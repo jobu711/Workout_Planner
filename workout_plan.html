@@ -1022,15 +1022,6 @@
             margin: 0;
         }
 
-        .workout-timer {
-            font-size: 1.5rem;
-            font-family: monospace;
-            color: #4ecdc4;
-            background: rgba(0,0,0,0.3);
-            padding: 8px 15px;
-            border-radius: 8px;
-        }
-
         /* Start Workout Button */
         .btn-start-workout {
             background: linear-gradient(135deg, #27ae60, #1e8449);
@@ -4295,10 +4286,7 @@
                             <h2>Active Workout</h2>
                             <p id="workout-date" style="color: #888; margin-top: 5px;"></p>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div class="workout-timer" id="workout-timer">00:00:00</div>
-                            <button class="btn-end-workout" onclick="endWorkout()">End Workout</button>
-                        </div>
+                        <button class="btn-end-workout" onclick="endWorkout()">End Workout</button>
                     </div>
 
                     <button class="btn-start-workout" onclick="showExerciseModal()" style="margin-bottom: 20px;">
@@ -5000,7 +4988,6 @@
         let workoutSessions = [];
         let personalRecords = {};
         let activeWorkout = null;
-        let workoutTimerInterval = null;
         let restTimerInterval = null;
         let restTimeLeft = 90;
         let allExercises = [];
@@ -5115,7 +5102,6 @@
             };
             saveActiveWorkout();
             showActiveWorkout();
-            startWorkoutTimer();
             showToast('Workout started!');
         }
 
@@ -5138,7 +5124,6 @@
             };
             saveActiveWorkout();
             showActiveWorkout();
-            startWorkoutTimer();
             showToast(`Started ${routine.name}!`);
         }
 
@@ -5150,24 +5135,6 @@
             document.getElementById('rest-timer-section').style.display = 'block';
             renderExerciseLogs();
             updateWorkoutStats();
-        }
-
-        // Start workout timer
-        function startWorkoutTimer() {
-            const startTime = Date.now() - (activeWorkout.elapsedTime || 0);
-            workoutTimerInterval = setInterval(() => {
-                const elapsed = Date.now() - startTime;
-                activeWorkout.elapsedTime = elapsed;
-                document.getElementById('workout-timer').textContent = formatTimer(elapsed);
-            }, 1000);
-        }
-
-        // Format timer display
-        function formatTimer(ms) {
-            const seconds = Math.floor(ms / 1000) % 60;
-            const minutes = Math.floor(ms / 60000) % 60;
-            const hours = Math.floor(ms / 3600000);
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
         // Render exercise logs
@@ -5296,7 +5263,6 @@
 
             if (!confirm('End this workout?')) return;
 
-            clearInterval(workoutTimerInterval);
             clearInterval(restTimerInterval);
 
             activeWorkout.endTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
