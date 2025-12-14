@@ -1042,8 +1042,8 @@
             box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
         }
 
-        .btn-end-workout {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        .btn-submit-workout {
+            background: linear-gradient(135deg, #27ae60, #1e8449);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -1052,9 +1052,9 @@
             transition: all 0.3s;
         }
 
-        .btn-end-workout:hover {
+        .btn-submit-workout:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
         }
 
         /* Exercise Log Card */
@@ -4286,7 +4286,7 @@
                             <h2>Active Workout</h2>
                             <p id="workout-date" style="color: #888; margin-top: 5px;"></p>
                         </div>
-                        <button class="btn-end-workout" onclick="endWorkout()">End Workout</button>
+                        <button class="btn-submit-workout" onclick="submitWorkout()">Submit Workout</button>
                     </div>
 
                     <button class="btn-start-workout" onclick="showExerciseModal()" style="margin-bottom: 20px;">
@@ -5257,11 +5257,11 @@
             document.getElementById('exercise-count').textContent = exerciseCount;
         }
 
-        // End workout
-        function endWorkout() {
+        // Submit workout to history
+        function submitWorkout() {
             if (!activeWorkout) return;
 
-            if (!confirm('End this workout?')) return;
+            if (!confirm('Submit this workout to history?')) return;
 
             clearInterval(restTimerInterval);
 
@@ -5310,7 +5310,7 @@
             if (newPRs.length > 0) {
                 showPRCelebration(newPRs[0]);
             } else {
-                showToast('Workout saved!');
+                showToast('Workout submitted to history!');
             }
         }
 
