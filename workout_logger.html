@@ -566,7 +566,7 @@
         <!-- Home Screen -->
         <div class="screen active" id="home-screen">
             <div class="import-section">
-                <input type="file" id="file-input" accept="application/json,.json,text/plain,*/*" onchange="handleFileImport(event)">
+                <input type="file" id="file-input" accept="application/json,.json,text/plain,*/*">
                 <label for="file-input" class="import-btn">
                     + Import Routine from JSON
                 </label>
@@ -653,6 +653,10 @@
             loadActiveWorkout();
             renderRoutineList();
 
+            // File input handler - use event listener for iOS compatibility
+            const fileInput = document.getElementById('file-input');
+            fileInput.addEventListener('change', handleFileImport);
+
             // Check if we have an active workout to resume
             if (activeWorkout) {
                 showWorkoutScreen();
@@ -696,22 +700,36 @@
 
         // Import Functions
         function handleFileImport(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+            const fileInput = event.target || document.getElementById('file-input');
+            const file = fileInput.files && fileInput.files[0];
+
+            if (!file) {
+                showToast('No file selected', true);
+                return;
+            }
+
+            showToast('Reading file...');
 
             const reader = new FileReader();
-            reader.onload = (e) => {
+
+            reader.onload = function(e) {
                 try {
-                    const data = JSON.parse(e.target.result);
+                    const text = e.target.result;
+                    const data = JSON.parse(text);
                     importRoutines(data);
                 } catch (err) {
-                    showToast('Invalid JSON file', true);
+                    showToast('Invalid JSON: ' + err.message, true);
                 }
+                // Reset input after processing so same file can be imported again
+                setTimeout(() => { fileInput.value = ''; }, 100);
             };
-            reader.readAsText(file);
 
-            // Reset input so same file can be imported again
-            event.target.value = '';
+            reader.onerror = function() {
+                showToast('Error reading file', true);
+                setTimeout(() => { fileInput.value = ''; }, 100);
+            };
+
+            reader.readAsText(file);
         }
 
         function importRoutines(data) {
