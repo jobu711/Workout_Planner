@@ -593,6 +593,14 @@
             background: linear-gradient(135deg, #f39c12, #e67e22);
             box-shadow: 0 4px 15px rgba(243,156,18,0.4);
         }
+        .tab-btn.cardio-tab.active {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231,76,60,0.4);
+        }
+        .tab-btn.cardio-tab:hover {
+            background: rgba(231,76,60,0.3);
+            color: #e74c3c;
+        }
         .tab-btn.routines-tab.active {
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
             box-shadow: 0 4px 15px rgba(155,89,182,0.4);
@@ -1042,6 +1050,7 @@
                 <button class="tab-btn chest-tab" data-tab="tab-chest" onclick="showTab('tab-chest')">Chest</button>
                 <button class="tab-btn triceps-tab" data-tab="tab-triceps" onclick="showTab('tab-triceps')">Triceps</button>
                 <button class="tab-btn legs-tab" data-tab="tab-legs" onclick="showTab('tab-legs')">Legs</button>
+                <button class="tab-btn cardio-tab" data-tab="tab-cardio" onclick="showTab('tab-cardio')">Cardio</button>
                 <button class="tab-btn routines-tab" data-tab="tab-routines" onclick="showTab('tab-routines')">Routines</button>
             </nav>
             <p class="scroll-hint">Swipe to see more tabs</p>
@@ -3497,6 +3506,50 @@
                 <li>Include both hip hinge exercises (RDLs, good mornings) and knee flexion (curls, glute bridges)</li>
             </ul>
         </div>
+        </div>
+
+        <!-- CARDIO TAB -->
+        <div id="tab-cardio" class="tab-content">
+            <div class="section-divider" style="color: #e74c3c;">
+                <h2 style="color: #e74c3c;">Cardio Exercises</h2>
+            </div>
+
+            <div class="workout-section">
+                <h2>High-Intensity Cardio <span class="level-tag level-advanced">Full Body</span></h2>
+                <p class="section-intro">Cardiovascular exercises that build endurance, burn calories, and improve overall conditioning.</p>
+                <div class="exercises-grid">
+
+                    <div class="exercise-card" style="border-color: rgba(231,76,60,0.3);">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/burpee-with-push-up.webp" alt="Burpee With Push-up" class="exercise-image">
+                        <h3 style="color: #e74c3c;">Burpee With Push-up <span class="level-tag level-advanced">Advanced</span></h3>
+                        <p>A full-body exercise combining a squat, plank, push-up, and jump. Start standing, drop to plank, perform a push-up, jump feet forward, then explode upward with arms overhead.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(231,76,60,0.2); color: #e74c3c;">3 sets x 10-15 reps</span>
+                            <span class="detail-badge" style="background: rgba(231,76,60,0.2); color: #e74c3c;">Bodyweight</span>
+                            <a href="https://liftmanual.com/burpee-with-push-up/" target="_blank" class="watch-link" style="color: #e74c3c;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Details
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #e74c3c;">Targets:</strong> Chest, Shoulders, Triceps, Core, Glutes, Quads, Hamstrings, Calves</p>
+                        <div class="form-tips">
+                            <strong>How to:</strong> 1) Stand feet shoulder-width apart 2) Squat, hands on ground 3) Jump feet back to plank 4) Perform push-up 5) Jump feet to hands 6) Explode upward with jump
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tips-section" style="background: rgba(231,76,60,0.1); border-left-color: #e74c3c;">
+                <h2 style="color: #e74c3c;">Cardio Training Tips</h2>
+                <ul>
+                    <li style="color: #ccc;">Start with fewer reps and focus on proper form before increasing intensity</li>
+                    <li style="color: #ccc;">Rest 30-60 seconds between sets for conditioning, longer for strength focus</li>
+                    <li style="color: #ccc;">Burpees can be modified - skip the push-up or jump for lower intensity</li>
+                    <li style="color: #ccc;">Combine with other exercises for HIIT circuits</li>
+                    <li style="color: #ccc;">Keep core engaged throughout to protect lower back</li>
+                </ul>
+            </div>
         </div>
 
         <!-- ROUTINES TAB -->
