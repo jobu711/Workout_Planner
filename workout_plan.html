@@ -593,6 +593,339 @@
             background: linear-gradient(135deg, #f39c12, #e67e22);
             box-shadow: 0 4px 15px rgba(243,156,18,0.4);
         }
+        .tab-btn.routines-tab.active {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            box-shadow: 0 4px 15px rgba(155,89,182,0.4);
+        }
+        .tab-btn.routines-tab:hover {
+            background: rgba(155,89,182,0.3);
+            color: #fff;
+        }
+
+        /* Routines Tab Styles */
+        .routines-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .routine-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(155,89,182,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .routine-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(155,89,182,0.2);
+        }
+
+        .routine-card h3 {
+            font-size: 1.3rem;
+            color: #9b59b6;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .routine-card .routine-subtitle {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .routine-card .exercise-count {
+            background: rgba(155,89,182,0.2);
+            color: #c39bd3;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .routine-exercises-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 100px;
+        }
+
+        .routine-exercise-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+
+        .routine-exercise-item:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .routine-exercise-info {
+            flex: 1;
+        }
+
+        .routine-exercise-info .exercise-name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .routine-exercise-info .exercise-meta {
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        .routine-exercise-info .exercise-targets {
+            color: #9b59b6;
+            font-size: 0.75rem;
+            margin-top: 3px;
+        }
+
+        .remove-from-routine {
+            background: rgba(231,76,60,0.2);
+            border: none;
+            color: #e74c3c;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-from-routine:hover {
+            background: rgba(231,76,60,0.4);
+            transform: scale(1.1);
+        }
+
+        .routine-empty-state {
+            color: #666;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border: 2px dashed rgba(155,89,182,0.2);
+            border-radius: 10px;
+        }
+
+        .routine-empty-state svg {
+            width: 40px;
+            height: 40px;
+            fill: #666;
+            margin-bottom: 10px;
+        }
+
+        /* Add to Routine Button on Exercise Cards */
+        .add-to-routine-btn {
+            background: rgba(155,89,182,0.2);
+            border: 1px solid rgba(155,89,182,0.3);
+            color: #c39bd3;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .add-to-routine-btn:hover {
+            background: rgba(155,89,182,0.4);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .add-to-routine-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Routine Selection Modal */
+        .routine-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .routine-modal-overlay.active {
+            display: flex;
+        }
+
+        .routine-modal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(155,89,182,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .routine-modal h3 {
+            color: #9b59b6;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .routine-modal .modal-exercise-name {
+            color: #c39bd3;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(155,89,182,0.2);
+        }
+
+        .routine-modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .routine-option-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .routine-option-btn:hover {
+            background: rgba(155,89,182,0.2);
+            border-color: rgba(155,89,182,0.4);
+            transform: translateX(5px);
+        }
+
+        .routine-option-btn .option-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .routine-option-btn .option-desc {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .routine-modal-close {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #888;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .routine-modal-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        /* Success notification */
+        .routine-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            z-index: 1001;
+            box-shadow: 0 5px 20px rgba(39,174,96,0.4);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .routine-notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .routine-notification.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 5px 20px rgba(231,76,60,0.4);
+        }
+
+        /* Section intro for routines */
+        .routines-intro {
+            background: rgba(155,89,182,0.1);
+            border: 1px solid rgba(155,89,182,0.3);
+            border-left: 4px solid #9b59b6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .routines-intro h3 {
+            color: #c39bd3;
+            margin-bottom: 10px;
+        }
+
+        .routines-intro p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile responsive for routines */
+        @media (max-width: 768px) {
+            .routines-container {
+                grid-template-columns: 1fr;
+            }
+
+            .routine-modal {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .add-to-routine-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 10px;
+            }
+        }
 
         .tab-content {
             display: none;
@@ -709,6 +1042,7 @@
                 <button class="tab-btn chest-tab" data-tab="tab-chest" onclick="showTab('tab-chest')">Chest</button>
                 <button class="tab-btn triceps-tab" data-tab="tab-triceps" onclick="showTab('tab-triceps')">Triceps</button>
                 <button class="tab-btn legs-tab" data-tab="tab-legs" onclick="showTab('tab-legs')">Legs</button>
+                <button class="tab-btn routines-tab" data-tab="tab-routines" onclick="showTab('tab-routines')">Routines</button>
             </nav>
             <p class="scroll-hint">Swipe to see more tabs</p>
         </div>
@@ -783,83 +1117,6 @@
 
             </div>
         </div>
-<!-- PHASE 1: REHABILITATION -->
-        <div class="workout-section shoulder">
-            <div class="phase-header">
-                <h2>Phase 1: Rehabilitation <span class="level-tag level-rehab">Weeks 1-4</span></h2>
-            </div>
-            <p class="section-intro">Light resistance, high reps (15-20), focus on control. Use slow tempo: 3 seconds up, 2 second hold, 3 seconds down.</p>
-            <div class="exercises-grid">
-
-                <div class="exercise-card highlight">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-reverse-fly.webp" alt="Reverse Pec Deck" class="exercise-image">
-                    <h3>Reverse Pec Deck (Light) <span class="level-tag level-rear-delt">Rear Delt</span></h3>
-                    <p>Sit facing the pad, arms extended. Pull handles back in arc motion, squeezing rear delts at contraction.</p>
-                    <div class="exercise-details">
-                        <span class="detail-badge">3 sets x 15-20 reps</span>
-                        <span class="detail-badge">Light weight</span>
-                    </div>
-                    <p class="muscles"><strong>Targets:</strong> Rear Deltoid, Rhomboids</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- PHASE 2: STRENGTHENING -->
-        <div class="workout-section shoulder">
-            <div class="phase-header">
-                <h2>Phase 2: Strengthening <span class="level-tag level-strengthen">Weeks 5-8</span></h2>
-            </div>
-            <p class="section-intro">Moderate resistance, building strength. Increase weight gradually.</p>
-            <div class="exercises-grid">
-
-                <div class="exercise-card shoulder-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-shoulder-external-rotation.webp" alt="External Rotation at 90deg" class="exercise-image">
-                    <h3>External Rotation at 90deg Abduction</h3>
-                    <p>Arm abducted 90deg, elbow bent 90deg. Rotate forearm from pointing down to pointing up. Key exercise for throwing athletes.</p>
-                    <div class="exercise-details">
-                        <span class="detail-badge">3 sets x 12-15 reps</span>
-                        <span class="detail-badge">3-5 lbs</span>
-                    </div>
-                    <p class="muscles"><strong>Targets:</strong> Infraspinatus, Teres Minor</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- PHASE 3: PROGRESSIVE OVERLOAD -->
-        <div class="workout-section shoulder">
-            <div class="phase-header">
-                <h2>Phase 3: Progressive Overload <span class="level-tag level-progress">Weeks 9+</span></h2>
-            </div>
-            <p class="section-intro">Building real strength while maintaining rotator cuff health. Increase weight every 1-2 weeks.</p>
-            <div class="exercises-grid">
-
-                <div class="exercise-card shoulder-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-shoulder-external-rotation.webp" alt="Cable External Rotation" class="exercise-image">
-                    <h3>Cable External Rotation (Heavy)</h3>
-                    <p>Progressively overload this movement. Elbow pinned, rotate outward. Track your weights and aim to increase.</p>
-                    <div class="exercise-details">
-                        <span class="detail-badge">3 sets x 10-12 reps</span>
-                        <span class="detail-badge">Progressive</span>
-                    </div>
-                    <p class="muscles"><strong>Targets:</strong> Infraspinatus, Teres Minor</p>
-                </div>
-
-                <div class="exercise-card highlight">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-reverse-fly.webp" alt="Reverse Pec Deck Heavy" class="exercise-image">
-                    <h3>Reverse Pec Deck (Heavy) <span class="level-tag level-rear-delt">Rear Delt</span></h3>
-                    <p>Increase weight progressively. Full range of motion with controlled squeeze at contraction.</p>
-                    <div class="exercise-details">
-                        <span class="detail-badge">4 sets x 10-12 reps</span>
-                        <span class="detail-badge">Progressive</span>
-                    </div>
-                    <p class="muscles"><strong>Targets:</strong> Rear Deltoid, Rhomboids</p>
-                </div>
-
-            </div>
-        </div>
-
         <!-- PRESSING MOVEMENTS -->
         <div class="workout-section">
             <h2>Pressing Movements <span class="level-tag level-intermediate">Compound</span></h2>
@@ -3242,6 +3499,122 @@
         </div>
         </div>
 
+        <!-- ROUTINES TAB -->
+        <div id="tab-routines" class="tab-content">
+            <div class="section-divider routines">
+                <h2 style="color: #9b59b6;">My Workout Routines</h2>
+            </div>
+
+            <div class="routines-intro">
+                <h3>Build Your Custom Routines</h3>
+                <p>Create personalized workout routines by adding exercises from other tabs. Click the "Add to Routine" button on any exercise card to include it in one of your routines. Your routines are saved automatically and will persist across sessions.</p>
+            </div>
+
+            <div class="routines-container">
+                <!-- Push Day Routine -->
+                <div class="routine-card" data-routine="push">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#9b59b6">
+                            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+                        </svg>
+                        Push Day
+                        <span class="exercise-count" id="push-count">0 exercises</span>
+                    </h3>
+                    <p class="routine-subtitle">Chest, Shoulders, Triceps</p>
+                    <div class="routine-exercises-list" id="push-exercises">
+                        <div class="routine-empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <p>No exercises added yet.<br>Browse other tabs and click "Add to Routine"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pull Day Routine -->
+                <div class="routine-card" data-routine="pull">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#9b59b6">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Pull Day
+                        <span class="exercise-count" id="pull-count">0 exercises</span>
+                    </h3>
+                    <p class="routine-subtitle">Back, Biceps, Rear Delts</p>
+                    <div class="routine-exercises-list" id="pull-exercises">
+                        <div class="routine-empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <p>No exercises added yet.<br>Browse other tabs and click "Add to Routine"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legs & Core Routine -->
+                <div class="routine-card" data-routine="legs-core">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#9b59b6">
+                            <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/>
+                        </svg>
+                        Legs & Core
+                        <span class="exercise-count" id="legs-core-count">0 exercises</span>
+                    </h3>
+                    <p class="routine-subtitle">Quads, Hamstrings, Glutes, Abs</p>
+                    <div class="routine-exercises-list" id="legs-core-exercises">
+                        <div class="routine-empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <p>No exercises added yet.<br>Browse other tabs and click "Add to Routine"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shoulders Routine -->
+                <div class="routine-card" data-routine="shoulders">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#9b59b6">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        Shoulders
+                        <span class="exercise-count" id="shoulders-count">0 exercises</span>
+                    </h3>
+                    <p class="routine-subtitle">All Deltoid Heads, Rotator Cuff</p>
+                    <div class="routine-exercises-list" id="shoulders-exercises">
+                        <div class="routine-empty-state">
+                            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <p>No exercises added yet.<br>Browse other tabs and click "Add to Routine"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Routine Selection Modal -->
+        <div class="routine-modal-overlay" id="routine-modal">
+            <div class="routine-modal">
+                <h3>Add to Routine</h3>
+                <p class="modal-exercise-name" id="modal-exercise-name">Exercise Name</p>
+                <div class="routine-modal-options">
+                    <button class="routine-option-btn" onclick="addToRoutine('push')">
+                        <div class="option-title">Push Day</div>
+                        <div class="option-desc">Chest, Shoulders, Triceps</div>
+                    </button>
+                    <button class="routine-option-btn" onclick="addToRoutine('pull')">
+                        <div class="option-title">Pull Day</div>
+                        <div class="option-desc">Back, Biceps, Rear Delts</div>
+                    </button>
+                    <button class="routine-option-btn" onclick="addToRoutine('legs-core')">
+                        <div class="option-title">Legs & Core</div>
+                        <div class="option-desc">Quads, Hamstrings, Glutes, Abs</div>
+                    </button>
+                    <button class="routine-option-btn" onclick="addToRoutine('shoulders')">
+                        <div class="option-title">Shoulders</div>
+                        <div class="option-desc">All Deltoid Heads, Rotator Cuff</div>
+                    </button>
+                </div>
+                <button class="routine-modal-close" onclick="closeRoutineModal()">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div class="routine-notification" id="routine-notification"></div>
+
         <footer>
             <p>Complete Kettlebell & Shoulder Health Program</p>
             <p style="margin-top: 10px; font-size: 0.8rem;">Train Smart, Stay Consistent, Protect Your Shoulders</p>
@@ -3271,6 +3644,262 @@
                 document.getElementById(tabId).scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
+
+        // ==========================================
+        // ROUTINES FUNCTIONALITY
+        // ==========================================
+
+        // Storage key for localStorage
+        const ROUTINES_STORAGE_KEY = 'workout_routines';
+
+        // Current exercise being added (stored temporarily when modal opens)
+        let currentExerciseData = null;
+
+        // Routine data structure
+        let routines = {
+            push: [],
+            pull: [],
+            'legs-core': [],
+            shoulders: []
+        };
+
+        // Load routines from localStorage on page load
+        function loadRoutines() {
+            const stored = localStorage.getItem(ROUTINES_STORAGE_KEY);
+            if (stored) {
+                try {
+                    routines = JSON.parse(stored);
+                } catch (e) {
+                    console.error('Error loading routines:', e);
+                    routines = { push: [], pull: [], 'legs-core': [], shoulders: [] };
+                }
+            }
+            renderAllRoutines();
+        }
+
+        // Save routines to localStorage
+        function saveRoutines() {
+            localStorage.setItem(ROUTINES_STORAGE_KEY, JSON.stringify(routines));
+        }
+
+        // Generate unique ID for exercises
+        function generateExerciseId() {
+            return 'ex_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Extract exercise data from a card element
+        function extractExerciseData(card) {
+            const nameEl = card.querySelector('h3');
+            const detailsEl = card.querySelector('.exercise-details .detail-badge');
+            const targetsEl = card.querySelector('.muscles');
+            const imageEl = card.querySelector('.exercise-image');
+
+            // Get the exercise name (excluding any level tags)
+            let name = '';
+            if (nameEl) {
+                // Clone to avoid modifying original
+                const clone = nameEl.cloneNode(true);
+                // Remove level tags from clone
+                clone.querySelectorAll('.level-tag').forEach(tag => tag.remove());
+                name = clone.textContent.trim();
+            }
+
+            // Get sets/reps info
+            let setsReps = detailsEl ? detailsEl.textContent.trim() : '';
+
+            // Get targets
+            let targets = '';
+            if (targetsEl) {
+                const strongEl = targetsEl.querySelector('strong');
+                if (strongEl) {
+                    targets = targetsEl.textContent.replace(strongEl.textContent, '').trim();
+                } else {
+                    targets = targetsEl.textContent.trim();
+                }
+            }
+
+            // Get image URL
+            let imageUrl = imageEl ? imageEl.src : '';
+
+            return {
+                id: generateExerciseId(),
+                name: name,
+                setsReps: setsReps,
+                targets: targets,
+                imageUrl: imageUrl
+            };
+        }
+
+        // Open the routine selection modal
+        function openRoutineModal(card) {
+            currentExerciseData = extractExerciseData(card);
+            document.getElementById('modal-exercise-name').textContent = currentExerciseData.name;
+            document.getElementById('routine-modal').classList.add('active');
+        }
+
+        // Close the routine selection modal
+        function closeRoutineModal() {
+            document.getElementById('routine-modal').classList.remove('active');
+            currentExerciseData = null;
+        }
+
+        // Add exercise to a specific routine
+        function addToRoutine(routineId) {
+            if (!currentExerciseData) return;
+
+            // Check if exercise already exists in this routine
+            const exists = routines[routineId].some(ex => ex.name === currentExerciseData.name);
+            if (exists) {
+                showNotification('This exercise is already in this routine!', true);
+                closeRoutineModal();
+                return;
+            }
+
+            // Add to routine
+            routines[routineId].push(currentExerciseData);
+            saveRoutines();
+            renderRoutine(routineId);
+
+            // Show success notification
+            const routineNames = {
+                push: 'Push Day',
+                pull: 'Pull Day',
+                'legs-core': 'Legs & Core',
+                shoulders: 'Shoulders'
+            };
+            showNotification(`Added "${currentExerciseData.name}" to ${routineNames[routineId]}`);
+
+            closeRoutineModal();
+        }
+
+        // Remove exercise from a routine
+        function removeFromRoutine(routineId, exerciseId) {
+            routines[routineId] = routines[routineId].filter(ex => ex.id !== exerciseId);
+            saveRoutines();
+            renderRoutine(routineId);
+            showNotification('Exercise removed from routine');
+        }
+
+        // Render a single routine's exercises
+        function renderRoutine(routineId) {
+            const container = document.getElementById(`${routineId}-exercises`);
+            const countEl = document.getElementById(`${routineId}-count`);
+            const exercises = routines[routineId];
+
+            // Update count
+            countEl.textContent = `${exercises.length} exercise${exercises.length !== 1 ? 's' : ''}`;
+
+            // Clear container
+            container.innerHTML = '';
+
+            if (exercises.length === 0) {
+                // Show empty state
+                container.innerHTML = `
+                    <div class="routine-empty-state">
+                        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        <p>No exercises added yet.<br>Browse other tabs and click "Add to Routine"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render each exercise
+            exercises.forEach(exercise => {
+                const item = document.createElement('div');
+                item.className = 'routine-exercise-item';
+                item.innerHTML = `
+                    <div class="routine-exercise-info">
+                        <div class="exercise-name">${exercise.name}</div>
+                        <div class="exercise-meta">${exercise.setsReps}</div>
+                        ${exercise.targets ? `<div class="exercise-targets">${exercise.targets}</div>` : ''}
+                    </div>
+                    <button class="remove-from-routine" onclick="removeFromRoutine('${routineId}', '${exercise.id}')" title="Remove from routine">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Render all routines
+        function renderAllRoutines() {
+            renderRoutine('push');
+            renderRoutine('pull');
+            renderRoutine('legs-core');
+            renderRoutine('shoulders');
+        }
+
+        // Show notification toast
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('routine-notification');
+            notification.textContent = message;
+            notification.classList.toggle('error', isError);
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add "Add to Routine" buttons to all exercise cards
+        function addRoutineButtons() {
+            // Get all exercise cards except those in the routines tab
+            const cards = document.querySelectorAll('.exercise-card');
+
+            cards.forEach(card => {
+                // Skip if already has button or is in routines tab
+                if (card.querySelector('.add-to-routine-btn')) return;
+                if (card.closest('#tab-routines')) return;
+
+                // Create the button
+                const btn = document.createElement('button');
+                btn.className = 'add-to-routine-btn';
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    Add to Routine
+                `;
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openRoutineModal(card);
+                });
+
+                // Find where to insert (after form-tips or tempo-box if exists, otherwise at the end)
+                const formTips = card.querySelector('.form-tips');
+                const tempoBox = card.querySelector('.tempo-box');
+
+                if (tempoBox) {
+                    tempoBox.after(btn);
+                } else if (formTips) {
+                    formTips.after(btn);
+                } else {
+                    card.appendChild(btn);
+                }
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('routine-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRoutineModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRoutineModal();
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            addRoutineButtons();
+            loadRoutines();
+        });
     </script>
 </body>
 </html>
