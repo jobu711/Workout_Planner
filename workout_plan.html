@@ -601,6 +601,14 @@
             background: rgba(231,76,60,0.3);
             color: #e74c3c;
         }
+        .tab-btn.wrist-tab.active {
+            background: linear-gradient(135deg, #d4a017, #b8860b);
+            box-shadow: 0 4px 15px rgba(212,160,23,0.4);
+        }
+        .tab-btn.wrist-tab:hover {
+            background: rgba(212,160,23,0.3);
+            color: #d4a017;
+        }
         .tab-btn.routines-tab.active {
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
             box-shadow: 0 4px 15px rgba(155,89,182,0.4);
@@ -671,10 +679,19 @@
             align-items: center;
             border: 1px solid rgba(255,255,255,0.05);
             transition: background 0.2s;
+            gap: 12px;
         }
 
         .routine-exercise-item:hover {
             background: rgba(0,0,0,0.3);
+        }
+
+        .routine-exercise-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
         }
 
         .routine-exercise-info {
@@ -1051,6 +1068,7 @@
                 <button class="tab-btn triceps-tab" data-tab="tab-triceps" onclick="showTab('tab-triceps')">Triceps</button>
                 <button class="tab-btn legs-tab" data-tab="tab-legs" onclick="showTab('tab-legs')">Legs</button>
                 <button class="tab-btn cardio-tab" data-tab="tab-cardio" onclick="showTab('tab-cardio')">Cardio</button>
+                <button class="tab-btn wrist-tab" data-tab="tab-wrist" onclick="showTab('tab-wrist')">Wrist</button>
                 <button class="tab-btn routines-tab" data-tab="tab-routines" onclick="showTab('tab-routines')">Routines</button>
             </nav>
             <p class="scroll-hint">Swipe to see more tabs</p>
@@ -1152,15 +1170,6 @@
                     <p class="muscles"><strong>Targets:</strong> Front Deltoid, Triceps, Trapezius, Core</p>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- LATERAL RAISES -->
-        <div class="workout-section">
-            <h2>Lateral Raises <span class="level-tag level-beginner">Side Delts</span></h2>
-            <p class="section-intro">Lateral raises build shoulder width by targeting the side deltoids.</p>
-            <div class="exercises-grid">
-
                 <div class="exercise-card">
                     <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lateral-raise.webp" alt="Dumbbell Lateral Raise" class="exercise-image">
                     <h3>Dumbbell Lateral Raise</h3>
@@ -1191,15 +1200,6 @@
                     <p class="muscles"><strong>Targets:</strong> Side Deltoid, Trapezius, Rotator Cuff</p>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- FRONT RAISES -->
-        <div class="workout-section">
-            <h2>Front Raises <span class="level-tag level-beginner">Front Delts</span></h2>
-            <p class="section-intro">Front raises isolate the anterior deltoid.</p>
-            <div class="exercises-grid">
-
                 <div class="exercise-card">
                     <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-front-raise.webp" alt="Dumbbell Front Raise" class="exercise-image">
                     <h3>Dumbbell Front Raise</h3>
@@ -1208,6 +1208,16 @@
                         <span class="detail-badge">3 sets x 12-15 reps</span>
                     </div>
                     <p class="muscles"><strong>Targets:</strong> Anterior Deltoid, Lateral Deltoid, Supraspinatus</p>
+                </div>
+
+                <div class="exercise-card">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-single-arm-thruster-300x300.webp" alt="Kettlebell Single Arm Thruster" class="exercise-image">
+                    <h3>Kettlebell Single Arm Thruster</h3>
+                    <p>Hold kettlebell at shoulder height, descend into a squat until thighs reach parallel, then drive upward while pressing overhead in one fluid motion.</p>
+                    <div class="exercise-details">
+                        <span class="detail-badge">3 sets x 8-10 reps each side</span>
+                    </div>
+                    <p class="muscles"><strong>Targets:</strong> Shoulders, Quads, Glutes, Triceps, Core</p>
                 </div>
 
             </div>
@@ -3576,6 +3586,103 @@
             </div>
         </div>
 
+        <!-- WRIST TAB -->
+        <div id="tab-wrist" class="tab-content">
+            <div class="section-divider" style="color: #d4a017;">
+                <h2 style="color: #d4a017;">Wrist Training</h2>
+            </div>
+
+            <div class="workout-section">
+                <h2>Wrist & Forearm Strength <span class="level-tag level-intermediate">Grip + Stability</span></h2>
+                <p class="section-intro">Build grip strength, wrist stability, and forearm endurance. These exercises improve your performance on every pull, curl, and carry while protecting against wrist injuries.</p>
+                <div class="exercises-grid">
+
+                    <!-- Exercise 1: Kettlebell Punch -->
+                    <div class="exercise-card" style="border-color: rgba(212,160,23,0.3);">
+                        <h3 style="color: #d4a017;">Kettlebell Punch <span class="level-tag level-intermediate">Intermediate</span></h3>
+                        <p>Hold a kettlebell by the handle in one hand. Extend your arm forward in a punching motion while gripping tightly, then retract. Builds wrist stability and grip endurance.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(212,160,23,0.2); color: #d4a017;">3 sets x 10-12 each hand</span>
+                            <a href="https://www.facebook.com/reel/1575007680399450" target="_blank" class="watch-link" style="color: #d4a017;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Video
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #d4a017;">Targets:</strong> Wrist Flexors, Forearm Extensors, Grip</p>
+                    </div>
+
+                    <!-- Exercise 2: Towel Hand to Hand Curl -->
+                    <div class="exercise-card" style="border-color: rgba(212,160,23,0.3);">
+                        <h3 style="color: #d4a017;">Towel Hand to Hand Curl <span class="level-tag level-intermediate">Intermediate</span></h3>
+                        <p>Thread a towel through a kettlebell handle. Grip each end of the towel and curl up, transferring the kettlebell from one hand to the other at the top. The towel grip adds forearm challenge.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(212,160,23,0.2); color: #d4a017;">3 sets x 10-12 reps</span>
+                            <a href="https://www.facebook.com/reel/1575007680399450" target="_blank" class="watch-link" style="color: #d4a017;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Video
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #d4a017;">Targets:</strong> Forearms, Wrist Flexors, Biceps, Grip</p>
+                    </div>
+
+                    <!-- Exercise 3: Reverse Curl -->
+                    <div class="exercise-card" style="border-color: rgba(212,160,23,0.3);">
+                        <h3 style="color: #d4a017;">Reverse Curl <span class="level-tag level-beginner">Beginner</span></h3>
+                        <p>Hold dumbbells or barbell with an overhand (pronated) grip. Curl the weight up while keeping palms facing down throughout. Targets the brachioradialis and wrist extensors.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(212,160,23,0.2); color: #d4a017;">3 sets x 12-15 reps</span>
+                            <a href="https://www.facebook.com/reel/1575007680399450" target="_blank" class="watch-link" style="color: #d4a017;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Video
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #d4a017;">Targets:</strong> Brachioradialis, Wrist Extensors, Forearms</p>
+                    </div>
+
+                    <!-- Exercise 4: Towel Kettlebell Curl -->
+                    <div class="exercise-card" style="border-color: rgba(212,160,23,0.3);">
+                        <h3 style="color: #d4a017;">Towel Kettlebell Curl <span class="level-tag level-intermediate">Intermediate</span></h3>
+                        <p>Thread a towel through a kettlebell handle and grip both ends of the towel together. Perform bicep curls while the towel forces your grip and wrist stabilizers to work overtime.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(212,160,23,0.2); color: #d4a017;">3 sets x 10-12 reps</span>
+                            <a href="https://www.facebook.com/reel/1575007680399450" target="_blank" class="watch-link" style="color: #d4a017;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Video
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #d4a017;">Targets:</strong> Forearms, Wrist Stabilizers, Biceps, Grip</p>
+                    </div>
+
+                    <!-- Exercise 5: Kettlebell Wrist Curl -->
+                    <div class="exercise-card" style="border-color: rgba(212,160,23,0.3);">
+                        <h3 style="color: #d4a017;">Kettlebell Wrist Curl <span class="level-tag level-beginner">Beginner</span></h3>
+                        <p>Sit on a bench with forearm resting on thigh, palm facing up, holding a kettlebell. Lower the kettlebell by extending the wrist, then curl it back up using only wrist movement.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge" style="background: rgba(212,160,23,0.2); color: #d4a017;">3 sets x 12-15 each hand</span>
+                            <a href="https://www.facebook.com/reel/1575007680399450" target="_blank" class="watch-link" style="color: #d4a017;">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Video
+                            </a>
+                        </div>
+                        <p class="muscles"><strong style="color: #d4a017;">Targets:</strong> Wrist Flexors, Forearm Flexors, Grip</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tips-section" style="background: rgba(212,160,23,0.1); border-left-color: #d4a017;">
+                <h2 style="color: #d4a017;">Wrist Training Tips</h2>
+                <ul>
+                    <li style="color: #ccc;">Start with light weight and focus on controlled, full range-of-motion reps to avoid strain</li>
+                    <li style="color: #ccc;">Warm up your wrists with gentle circles and flexion/extension stretches before training</li>
+                    <li style="color: #ccc;">Towel exercises dramatically increase grip difficulty - reduce weight by 30-40% compared to normal grip</li>
+                    <li style="color: #ccc;">Train wrists at the end of your session so grip fatigue does not compromise other lifts</li>
+                    <li style="color: #ccc;">If you feel sharp pain (not muscle burn), stop immediately - wrist joints are delicate</li>
+                    <li style="color: #ccc;">Pair wrist curls with reverse curls to maintain balanced forearm development</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- ROUTINES TAB -->
         <div id="tab-routines" class="tab-content">
             <div class="section-divider routines">
@@ -3885,6 +3992,7 @@
                 const item = document.createElement('div');
                 item.className = 'routine-exercise-item';
                 item.innerHTML = `
+                    ${exercise.imageUrl ? `<img src="${exercise.imageUrl}" alt="${exercise.name}" class="routine-exercise-image">` : ''}
                     <div class="routine-exercise-info">
                         <div class="exercise-name">${exercise.name}</div>
                         <div class="exercise-meta">${exercise.setsReps}</div>
