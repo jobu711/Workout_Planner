@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health Program") with inline CSS/JS. Dark-themed, mobile-responsive exercise reference with 11 tabbed sections and a custom routine builder backed by localStorage.
+Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health Program") with inline CSS/JS. Dark-themed, mobile-responsive exercise reference with 12 tabbed sections, a custom routine builder backed by localStorage, and workout history import/tracking.
 
 ## Architecture & Structure
 
@@ -25,13 +25,14 @@ Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health P
 | `tab-cardio` | `.cardio-tab` | Cardio Exercises | 3500-3587 | 3 |
 | `tab-wrist` | `.wrist-tab` | Wrist Training | 3589-3684 | 5 (kettlebell 3, dumbbell/barbell 1, towel 1) |
 | `tab-routines` | `.routines-tab` | My Workout Routines | 3686-3800 | N/A (user-built) |
+| `tab-history` | `.history-tab` | Workout History | after routines | N/A (imported sessions) |
 
 ### CSS Architecture (lines 1-1042)
 
 - **Theme colors:** Background `#1a1a2e`/`#16213e`, Orange accent `#ff6b35`, Teal accent `#4ecdc4`
 - **Card variants:** `.exercise-card` (default orange), `.shoulder-card` (teal), `.highlight` (darker orange)
 - **Level tags:** `.level-beginner` (green), `.level-intermediate` (yellow), `.level-advanced` (red), `.level-rehab` (blue), `.level-warmup` (gray)
-- **Tab button colors:** Each tab has unique active gradient (e.g., `.shoulder-tab.active` = teal, `.chest-tab.active` = red, `.wrist-tab.active` = gold/amber)
+- **Tab button colors:** Each tab has unique active gradient (e.g., `.shoulder-tab.active` = teal, `.chest-tab.active` = red, `.wrist-tab.active` = gold/amber, `.history-tab.active` = green)
 - **Responsive breakpoints:** 768px (mobile layout, horizontal tab scroll), 480px (compact spacing)
 - **Key components:** `.tab-nav` (sticky, backdrop-blur), `.exercises-grid` (auto-fit grid, min 300px), `.routine-modal-overlay`, `.routine-notification`
 
@@ -68,8 +69,15 @@ Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health P
 | `renderAllRoutines()` | Render all 4 routines |
 | `showNotification(message, isError)` | Toast notification with auto-dismiss |
 | `addRoutineButtons()` | Inject "Add to Routine" button onto every exercise card |
+| `escapeHtml(str)` | HTML entity escaping for safe rendering |
+| `loadHistory()` | Parse localStorage `workout_history` into `workoutHistory` array, render |
+| `saveHistory()` | Serialize `workoutHistory` to localStorage |
+| `importWorkoutSession(inputEl)` | FileReader reads .json, validates appId, checks duplicates, saves, renders |
+| `deleteHistorySession(timestamp)` | Remove session by timestamp, save, re-render |
+| `toggleHistorySession(timestamp)` | Expand/collapse session card in history view |
+| `renderHistory()` | Build DOM for all history sessions with routine groups, exercises, set badges |
 
-**localStorage key:** `workout_routines`
+**localStorage keys:** `workout_routines`, `workout_history`
 
 **Routine IDs:** `push`, `pull`, `legs-core`, `shoulders`
 
@@ -117,9 +125,38 @@ After major revisions (new tabs, bulk exercise additions, structural changes), c
 }
 ```
 
+### Workout Session Object (exported JSON / history entry)
+```json
+{
+    "version": 1,
+    "appId": "workout-planner-session",
+    "date": "2026-01-31",
+    "dateDisplay": "Jan 31, 2026",
+    "timestamp": 1738350000000,
+    "routines": [
+        {
+            "id": "push",
+            "name": "Push Day",
+            "subtitle": "Chest, Shoulders, Triceps",
+            "exercises": [
+                {
+                    "name": "Bench Press",
+                    "targets": "Chest, Triceps",
+                    "imageUrl": "https://...",
+                    "setsReps": "3 sets x 10-12 reps",
+                    "sets": [
+                        { "weight": 135, "reps": 12, "completed": true }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
 ## Verification Checklist
 
-- [ ] Tab switching works for all 11 tabs
+- [ ] Tab switching works for all 12 tabs
 - [ ] Exercise cards render with image, description, sets/reps, targets
 - [ ] "Add to Routine" buttons appear on all exercise cards (not in Routines tab)
 - [ ] Routine modal opens/closes, adds exercises, prevents duplicates
@@ -129,3 +166,10 @@ After major revisions (new tabs, bulk exercise additions, structural changes), c
 - [ ] Mobile responsive: tabs scroll horizontally, cards stack vertically
 - [ ] All external image/guide links load correctly
 - [ ] Sticky tab nav with backdrop blur works on scroll
+- [ ] History tab: import .json workout session files
+- [ ] History tab: session cards expand/collapse with routine details and set badges
+- [ ] History tab: duplicate import prevention by timestamp
+- [ ] History tab: delete sessions with confirmation notification
+- [ ] History tab: sessions persist across page reloads (localStorage)
+- [ ] Export: "Save Workout" button generates valid JSON with weight/reps/completion data
+- [ ] Export: data attributes on routine/exercise elements for JS scraping

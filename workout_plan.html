@@ -617,6 +617,14 @@
             background: rgba(155,89,182,0.3);
             color: #fff;
         }
+        .tab-btn.history-tab.active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            box-shadow: 0 4px 15px rgba(46,204,113,0.4);
+        }
+        .tab-btn.history-tab:hover {
+            background: rgba(46,204,113,0.3);
+            color: #2ecc71;
+        }
 
         /* Routines Tab Styles */
         .routines-container {
@@ -977,6 +985,221 @@
             fill: white;
         }
 
+        /* History Tab Styles */
+        .history-import-section {
+            background: rgba(46,204,113,0.08);
+            border: 1px solid rgba(46,204,113,0.3);
+            border-left: 4px solid #2ecc71;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .history-import-section p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .import-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .import-btn:hover {
+            background: linear-gradient(135deg, #3ddb80, #2ecc71);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46,204,113,0.4);
+        }
+
+        .import-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .history-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .history-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .history-empty-state svg {
+            width: 64px;
+            height: 64px;
+            fill: #444;
+            margin-bottom: 15px;
+        }
+
+        .history-empty-state p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .history-session-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(46,204,113,0.2);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .history-session-card.expanded {
+            border-color: rgba(46,204,113,0.5);
+        }
+
+        .history-session-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            gap: 15px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .history-session-header:hover {
+            background: rgba(46,204,113,0.05);
+        }
+
+        .history-session-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2ecc71;
+            white-space: nowrap;
+        }
+
+        .history-session-summary {
+            flex: 1;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .history-session-chevron {
+            color: #2ecc71;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .history-session-card.expanded .history-session-chevron {
+            transform: rotate(90deg);
+        }
+
+        .delete-session-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .delete-session-btn:hover {
+            color: #e74c3c;
+            background: rgba(231,76,60,0.1);
+        }
+
+        .history-session-body {
+            display: none;
+            padding: 0 20px 20px;
+        }
+
+        .history-session-card.expanded .history-session-body {
+            display: block;
+        }
+
+        .history-routine-group {
+            margin-bottom: 18px;
+        }
+
+        .history-routine-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-routine-name {
+            color: #c39bd3;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(155,89,182,0.2);
+        }
+
+        .history-exercise-entry {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .history-exercise-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-exercise-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .history-exercise-targets {
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .history-set-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .history-set-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            background: rgba(46,204,113,0.15);
+            color: #2ecc71;
+            border: 1px solid rgba(46,204,113,0.3);
+        }
+
+        .history-set-badge.incomplete {
+            background: rgba(255,255,255,0.05);
+            color: #666;
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .history-set-badge.empty {
+            background: rgba(255,255,255,0.03);
+            color: #555;
+            border-color: rgba(255,255,255,0.05);
+            font-style: italic;
+        }
+
         /* Mobile responsive for routines */
         @media (max-width: 768px) {
             .routines-container {
@@ -998,6 +1221,25 @@
                 width: 100%;
                 justify-content: center;
                 padding: 14px 20px;
+            }
+
+            .import-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            .history-session-header {
+                padding: 14px 16px;
+                gap: 10px;
+            }
+
+            .history-session-date {
+                font-size: 1rem;
+            }
+
+            .history-session-summary {
+                font-size: 0.8rem;
             }
         }
 
@@ -1119,6 +1361,7 @@
                 <button class="tab-btn cardio-tab" data-tab="tab-cardio" onclick="showTab('tab-cardio')">Cardio</button>
                 <button class="tab-btn wrist-tab" data-tab="tab-wrist" onclick="showTab('tab-wrist')">Wrist</button>
                 <button class="tab-btn routines-tab" data-tab="tab-routines" onclick="showTab('tab-routines')">Routines</button>
+                <button class="tab-btn history-tab" data-tab="tab-history" onclick="showTab('tab-history')">History</button>
             </nav>
             <p class="scroll-hint">Swipe to see more tabs</p>
         </div>
@@ -3826,6 +4069,28 @@
             </div>
         </div>
 
+        <div id="tab-history" class="tab-content">
+            <div class="section-divider">
+                <h2 style="color: #2ecc71;">Workout History</h2>
+            </div>
+
+            <div class="history-import-section">
+                <p>Import .json files exported from your iPhone workout tracker.</p>
+                <input type="file" id="history-file-input" accept=".json" style="display:none" onchange="importWorkoutSession(this)">
+                <button class="import-btn" onclick="document.getElementById('history-file-input').click()">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                    Import Workout
+                </button>
+            </div>
+
+            <div class="history-container" id="history-container">
+                <div class="history-empty-state">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <p>No workout history yet.<br>Export a workout from your iPhone, then import the JSON file here.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Routine Selection Modal -->
         <div class="routine-modal-overlay" id="routine-modal">
             <div class="routine-modal">
@@ -4068,7 +4333,7 @@
 
             var routineHtml = '';
             exportData.forEach(function(r) {
-                routineHtml += '<details class="routine-details" open><summary><div class="summary-content">';
+                routineHtml += '<details class="routine-details" open data-routine-id="' + esc(r.id) + '" data-routine-name="' + esc(r.name) + '" data-routine-subtitle="' + esc(r.subtitle) + '"><summary><div class="summary-content">';
                 routineHtml += '<h2>' + esc(r.name) + '</h2>';
                 routineHtml += '<p class="subtitle">' + esc(r.subtitle) + '</p>';
                 routineHtml += '<p class="ex-count">' + r.exercises.length + ' exercise' + (r.exercises.length !== 1 ? 's' : '') + '</p>';
@@ -4076,7 +4341,7 @@
 
                 r.exercises.forEach(function(ex) {
                     var p = parseSetsReps(ex.setsReps);
-                    routineHtml += '<div class="exercise"><div class="ex-header">';
+                    routineHtml += '<div class="exercise" data-exercise-name="' + esc(ex.name) + '" data-exercise-targets="' + esc(ex.targets || '') + '" data-exercise-image="' + esc(ex.imageUrl || '') + '" data-exercise-setsreps="' + esc(ex.setsReps || '') + '"><div class="ex-header">';
                     if (ex.imageUrl) routineHtml += '<img class="ex-img" src="' + esc(ex.imageUrl) + '" alt="">';
                     routineHtml += '<div><div class="ex-name">' + esc(ex.name) + '</div>';
                     if (ex.targets) routineHtml += '<div class="ex-targets">' + esc(ex.targets) + '</div>';
@@ -4135,7 +4400,11 @@
                 + '.checkmark{width:32px;height:32px;border-radius:50%;border:2px solid rgba(155,89,182,0.3);display:flex;align-items:center;justify-content:center;transition:all 0.2s}'
                 + '.set-check:checked+.checkmark{background:#4ecdc4;border-color:#4ecdc4}'
                 + '.checkmark::after{content:"\u2713";color:transparent;font-size:16px;font-weight:bold;transition:color 0.2s}'
-                + '.set-check:checked+.checkmark::after{color:white}';
+                + '.set-check:checked+.checkmark::after{color:white}'
+                + '.save-workout-bar{position:sticky;bottom:0;left:0;right:0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#1a1a2e 30%);text-align:center;z-index:10}'
+                + '.save-workout-btn{width:100%;max-width:400px;padding:16px 24px;background:linear-gradient(135deg,#4ecdc4,#2ecc71);color:white;border:none;border-radius:12px;font-size:1.1rem;font-weight:700;cursor:pointer;min-height:50px;-webkit-tap-highlight-color:transparent;transition:all 0.2s}'
+                + '.save-workout-btn:active{transform:scale(0.97)}'
+                + '.save-workout-btn.saved{background:linear-gradient(135deg,#27ae60,#2ecc71)}';
 
             var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
                 + '<meta charset="UTF-8">\n'
@@ -4148,7 +4417,65 @@
                 + '<div class="app-header"><h1>My Workout Tracker</h1><p class="date">' + dateDisplay + '</p></div>\n'
                 + '<div class="content">\n'
                 + routineHtml
-                + '</div>\n</body>\n</html>';
+                + '<div class="save-workout-bar"><button class="save-workout-btn" onclick="saveWorkout()">Save Workout</button></div>\n'
+                + '</div>\n'
+                + '<script>\n'
+                + 'function saveWorkout(){\n'
+                + '  var routines=[];\n'
+                + '  document.querySelectorAll(".routine-details").forEach(function(rd){\n'
+                + '    var exercises=[];\n'
+                + '    rd.querySelectorAll(".exercise").forEach(function(ex){\n'
+                + '      var sets=[];\n'
+                + '      ex.querySelectorAll(".set-row").forEach(function(sr){\n'
+                + '        var inputs=sr.querySelectorAll(".set-input");\n'
+                + '        var check=sr.querySelector(".set-check");\n'
+                + '        sets.push({\n'
+                + '          weight:inputs[0]?parseFloat(inputs[0].value)||0:0,\n'
+                + '          reps:inputs[1]?parseInt(inputs[1].value)||0:0,\n'
+                + '          completed:check?check.checked:false\n'
+                + '        });\n'
+                + '      });\n'
+                + '      exercises.push({\n'
+                + '        name:ex.getAttribute("data-exercise-name")||"",\n'
+                + '        targets:ex.getAttribute("data-exercise-targets")||"",\n'
+                + '        imageUrl:ex.getAttribute("data-exercise-image")||"",\n'
+                + '        setsReps:ex.getAttribute("data-exercise-setsreps")||"",\n'
+                + '        sets:sets\n'
+                + '      });\n'
+                + '    });\n'
+                + '    routines.push({\n'
+                + '      id:rd.getAttribute("data-routine-id")||"",\n'
+                + '      name:rd.getAttribute("data-routine-name")||"",\n'
+                + '      subtitle:rd.getAttribute("data-routine-subtitle")||"",\n'
+                + '      exercises:exercises\n'
+                + '    });\n'
+                + '  });\n'
+                + '  var now=new Date();\n'
+                + '  var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];\n'
+                + '  var data={\n'
+                + '    version:1,\n'
+                + '    appId:"workout-planner-session",\n'
+                + '    date:now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0"),\n'
+                + '    dateDisplay:months[now.getMonth()]+" "+now.getDate()+", "+now.getFullYear(),\n'
+                + '    timestamp:now.getTime(),\n'
+                + '    routines:routines\n'
+                + '  };\n'
+                + '  var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});\n'
+                + '  var url=URL.createObjectURL(blob);\n'
+                + '  var a=document.createElement("a");\n'
+                + '  a.href=url;\n'
+                + '  a.download="Workout_"+data.date+".json";\n'
+                + '  document.body.appendChild(a);\n'
+                + '  a.click();\n'
+                + '  document.body.removeChild(a);\n'
+                + '  URL.revokeObjectURL(url);\n'
+                + '  var btn=document.querySelector(".save-workout-btn");\n'
+                + '  btn.textContent="Saved!";\n'
+                + '  btn.classList.add("saved");\n'
+                + '  setTimeout(function(){btn.textContent="Save Workout";btn.classList.remove("saved");},2000);\n'
+                + '}\n'
+                + '</script>\n'
+                + '</body>\n</html>';
 
             const blob = new Blob([html], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
@@ -4161,6 +4488,156 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             showNotification('Exported ' + exportData.length + ' routine' + (exportData.length !== 1 ? 's' : '') + ' for iPhone!');
+        }
+
+        // ===== WORKOUT HISTORY =====
+        const HISTORY_STORAGE_KEY = 'workout_history';
+        let workoutHistory = [];
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function loadHistory() {
+            try {
+                const stored = localStorage.getItem(HISTORY_STORAGE_KEY);
+                if (stored) {
+                    workoutHistory = JSON.parse(stored);
+                }
+            } catch(e) {
+                workoutHistory = [];
+            }
+            renderHistory();
+        }
+
+        function saveHistory() {
+            localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(workoutHistory));
+        }
+
+        function importWorkoutSession(inputEl) {
+            const file = inputEl.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    if (data.appId !== 'workout-planner-session') {
+                        showNotification('Invalid file: not a workout session export.', true);
+                        inputEl.value = '';
+                        return;
+                    }
+
+                    // Check for duplicate
+                    const isDuplicate = workoutHistory.some(s => s.timestamp === data.timestamp);
+                    if (isDuplicate) {
+                        showNotification('This workout session has already been imported.', true);
+                        inputEl.value = '';
+                        return;
+                    }
+
+                    workoutHistory.push(data);
+                    workoutHistory.sort((a, b) => b.timestamp - a.timestamp);
+                    saveHistory();
+                    renderHistory();
+                    showNotification('Workout session imported: ' + (data.dateDisplay || data.date));
+                } catch(err) {
+                    showNotification('Error reading file: invalid JSON.', true);
+                }
+                inputEl.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        function deleteHistorySession(timestamp) {
+            workoutHistory = workoutHistory.filter(s => s.timestamp !== timestamp);
+            saveHistory();
+            renderHistory();
+            showNotification('Workout session deleted.');
+        }
+
+        function toggleHistorySession(timestamp) {
+            const card = document.querySelector(`.history-session-card[data-timestamp="${timestamp}"]`);
+            if (card) {
+                card.classList.toggle('expanded');
+            }
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-container');
+            if (!container) return;
+
+            if (workoutHistory.length === 0) {
+                container.innerHTML = `
+                    <div class="history-empty-state">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        <p>No workout history yet.<br>Export a workout from your iPhone, then import the JSON file here.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            workoutHistory.forEach(function(session) {
+                const totalExercises = session.routines.reduce((sum, r) => sum + r.exercises.length, 0);
+                const totalSetsCompleted = session.routines.reduce((sum, r) =>
+                    sum + r.exercises.reduce((eSum, ex) =>
+                        eSum + (ex.sets ? ex.sets.filter(s => s.completed).length : 0), 0), 0);
+                const totalSets = session.routines.reduce((sum, r) =>
+                    sum + r.exercises.reduce((eSum, ex) =>
+                        eSum + (ex.sets ? ex.sets.length : 0), 0), 0);
+                const routineNames = session.routines.map(r => r.name).join(', ');
+
+                html += '<div class="history-session-card" data-timestamp="' + session.timestamp + '">';
+                html += '<div class="history-session-header" onclick="toggleHistorySession(' + session.timestamp + ')">';
+                html += '<span class="history-session-date">' + escapeHtml(session.dateDisplay || session.date) + '</span>';
+                html += '<span class="history-session-summary">' + escapeHtml(routineNames) + ' &middot; ' + totalExercises + ' exercises &middot; ' + totalSetsCompleted + '/' + totalSets + ' sets</span>';
+                html += '<button class="delete-session-btn" onclick="event.stopPropagation();deleteHistorySession(' + session.timestamp + ')" title="Delete session">';
+                html += '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>';
+                html += '</button>';
+                html += '<span class="history-session-chevron">&#9656;</span>';
+                html += '</div>';
+
+                html += '<div class="history-session-body">';
+                session.routines.forEach(function(routine) {
+                    html += '<div class="history-routine-group">';
+                    html += '<div class="history-routine-name">' + escapeHtml(routine.name) + ' <span style="color:#888;font-weight:400;font-size:0.85rem">' + escapeHtml(routine.subtitle || '') + '</span></div>';
+
+                    routine.exercises.forEach(function(ex) {
+                        html += '<div class="history-exercise-entry">';
+                        html += '<div class="history-exercise-name">' + escapeHtml(ex.name) + '</div>';
+                        if (ex.targets) {
+                            html += '<div class="history-exercise-targets">' + escapeHtml(ex.targets) + '</div>';
+                        }
+                        if (ex.sets && ex.sets.length > 0) {
+                            html += '<div class="history-set-list">';
+                            ex.sets.forEach(function(set, idx) {
+                                let badgeClass = 'history-set-badge';
+                                let label = '';
+                                if (set.weight === 0 && set.reps === 0) {
+                                    badgeClass += ' empty';
+                                    label = 'Set ' + (idx + 1) + ': --';
+                                } else if (set.completed) {
+                                    label = set.weight + 'lbs x ' + set.reps;
+                                } else {
+                                    badgeClass += ' incomplete';
+                                    label = set.weight + 'lbs x ' + set.reps;
+                                }
+                                html += '<span class="' + badgeClass + '">' + label + '</span>';
+                            });
+                            html += '</div>';
+                        }
+                        html += '</div>';
+                    });
+
+                    html += '</div>';
+                });
+                html += '</div>';
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
         }
 
         // Render a single routine's exercises
@@ -4283,6 +4760,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             addRoutineButtons();
             loadRoutines();
+            loadHistory();
         });
     </script>
 </body>
