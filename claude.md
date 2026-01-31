@@ -6,9 +6,9 @@ Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health P
 
 ## Architecture & Structure
 
-### File: `workout_plan.html` (~3,985 lines)
+### File: `workout_plan.html` (~6,220 lines)
 
-**Layout:** `<head>` (styles, lines 1-1042) | `<body>` (HTML content, lines 1045-3700) | `<script>` (JS, lines 3702-3982)
+**Layout:** `<head>` (styles, lines 1-1780) | `<body>` (HTML content, lines 1783-4770) | `<script>` (JS, lines 4772-6218)
 
 ### Tab System
 
@@ -34,7 +34,8 @@ Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health P
 - **Level tags:** `.level-beginner` (green), `.level-intermediate` (yellow), `.level-advanced` (red), `.level-rehab` (blue), `.level-warmup` (gray)
 - **Tab button colors:** Each tab has unique active gradient (e.g., `.shoulder-tab.active` = teal, `.chest-tab.active` = red, `.wrist-tab.active` = gold/amber, `.history-tab.active` = green)
 - **Responsive breakpoints:** 768px (mobile layout, horizontal tab scroll), 480px (compact spacing)
-- **Key components:** `.tab-nav` (sticky, backdrop-blur), `.exercises-grid` (auto-fit grid, min 300px), `.routine-modal-overlay`, `.routine-notification`
+- **Key components:** `.tab-nav` (sticky, backdrop-blur), `.exercises-grid` (auto-fit grid, min 300px), `.routine-modal-overlay`, `.routine-notification`, `.pr-modal-overlay`
+- **Analytics components:** `.history-view-toggle`, `.analytics-summary`, `.sparkline`, `.plateau-alerts`, `.pr-hall-of-fame`, `.analytics-exercise-card`, `.exercise-history-panel`, `.view-history-btn`
 
 ### Exercise Card Template
 
@@ -76,8 +77,30 @@ Single-page HTML workout companion app ("Complete Kettlebell & Shoulder Health P
 | `deleteHistorySession(timestamp)` | Remove session by timestamp, save, re-render |
 | `toggleHistorySession(timestamp)` | Expand/collapse session card in history view |
 | `renderHistory()` | Build DOM for all history sessions with routine groups, exercises, set badges |
+| `getExerciseSessions(name)` | Scan workoutHistory for all sessions containing a named exercise |
+| `estimate1RM(weight, reps)` | Epley formula estimated one-rep max |
+| `calculateTrend(values)` | Linear regression slope for trend detection |
+| `detectPlateau(recentSessions)` | Detect stalls/plateaus/fatigue from last 3 sessions |
+| `isLowerBodyExercise(name)` | Keyword match for lower body exercises (weight increment logic) |
+| `getSuggestion(exerciseName)` | Smart weight/rep suggestion using double-progression logic |
+| `getExerciseStats(exerciseName)` | Full per-exercise stats: PRs, volume, trend, plateau |
+| `getAllExerciseAnalytics()` | Cached aggregate of all exercise stats across history |
+| `detectNewPRs(session)` | Compare imported session against prior history for new PRs |
+| `switchHistoryView(view)` | Toggle between Sessions and Analytics views in History tab |
+| `renderAnalytics()` | Main analytics view renderer (summary, plateaus, PRs, exercise cards) |
+| `renderAnalyticsSummary(data)` | Render top stat boxes (sessions, exercises, PRs, frequency) |
+| `renderPlateauAlerts(data)` | Render amber plateau/stall/fatigue warning cards |
+| `dismissPlateau(name)` | Dismiss plateau alert for 7 days (stored in localStorage) |
+| `renderPRHallOfFame(data)` | Render recent PR entries sorted by date |
+| `buildSparkline(sessions, trend)` | Generate CSS bar chart HTML for e1RM trend |
+| `renderExerciseAnalyticsCards(data)` | Render expandable per-exercise analytics cards |
+| `toggleAnalyticsCard(card)` | Expand/collapse analytics exercise card |
+| `addHistoryButtons()` | Inject "View History" buttons on exercise cards with history data |
+| `toggleExerciseHistoryPanel(card, name)` | Show/hide inline history panel on exercise card |
+| `showPRModal(prs)` | Display PR celebration modal after import |
+| `closePRModal()` | Hide PR celebration modal |
 
-**localStorage keys:** `workout_routines`, `workout_history`
+**localStorage keys:** `workout_routines`, `workout_history`, `plateau_dismissals`
 
 **Routine IDs:** `push`, `pull`, `legs-core`, `shoulders`
 
@@ -173,3 +196,17 @@ After major revisions (new tabs, bulk exercise additions, structural changes), c
 - [ ] History tab: sessions persist across page reloads (localStorage)
 - [ ] Export: "Save Workout" button generates valid JSON with weight/reps/completion data
 - [ ] Export: data attributes on routine/exercise elements for JS scraping
+- [ ] Analytics: Sessions/Analytics toggle switches views in History tab
+- [ ] Analytics: summary stat boxes show session count, exercise count, recent PRs, frequency
+- [ ] Analytics: per-exercise cards show e1RM, volume PR, best set, sparkline, session log
+- [ ] Analytics: plateau/stall/fatigue warnings appear with amber cards and suggestions
+- [ ] Analytics: plateau dismissal persists for 7 days via localStorage
+- [ ] Analytics: PR Hall of Fame shows recent PRs sorted by date
+- [ ] Analytics: empty state shown when no history imported
+- [ ] PR celebration modal appears on import when new PRs detected (e1RM, volume, best set)
+- [ ] Exercise cards: "View History" button shown on cards with history data
+- [ ] Exercise cards: inline history panel shows stats, sparkline, last 5 sessions
+- [ ] Exercise cards: only one history panel open at a time
+- [ ] Export: smart weight suggestions pre-fill inputs based on history
+- [ ] Export: suggestion reasoning text shown as teal hint above set rows
+- [ ] Mobile responsive: analytics cards/sparklines/toggle adapt at 768px and 480px

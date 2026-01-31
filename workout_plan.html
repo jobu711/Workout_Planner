@@ -1200,6 +1200,585 @@
             font-style: italic;
         }
 
+        /* ========================================
+           Progressive Overload Analytics Styles
+           ======================================== */
+
+        /* History View Toggle (sessions vs analytics) */
+        .history-view-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(46,204,113,0.3);
+        }
+        .toggle-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.03);
+            color: #888;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn:hover { background: rgba(46,204,113,0.08); }
+        .toggle-btn.active {
+            background: linear-gradient(135deg, rgba(46,204,113,0.2), rgba(46,204,113,0.1));
+            color: #2ecc71;
+        }
+
+        /* Analytics Summary (top stat boxes) */
+        .analytics-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .analytics-stat-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .analytics-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2ecc71;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .analytics-stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sparklines (CSS bar chart) */
+        .sparkline {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 40px;
+            padding: 4px 0;
+        }
+        .spark-bar {
+            flex: 1;
+            min-width: 6px;
+            max-width: 14px;
+            background: rgba(46,204,113,0.4);
+            border-radius: 2px 2px 0 0;
+            transition: height 0.3s ease;
+        }
+        .spark-bar.current {
+            background: #2ecc71;
+        }
+        .spark-bar.declining {
+            background: rgba(231,76,60,0.5);
+        }
+        .spark-bar.declining.current {
+            background: #e74c3c;
+        }
+        .spark-bar.flat {
+            background: rgba(243,156,18,0.4);
+        }
+        .spark-bar.flat.current {
+            background: #f39c12;
+        }
+
+        /* Plateau Alerts */
+        .plateau-alerts {
+            margin-bottom: 25px;
+        }
+        .plateau-alerts-title {
+            color: #f39c12;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .plateau-alert-card {
+            background: rgba(243,156,18,0.08);
+            border: 1px solid rgba(243,156,18,0.25);
+            border-left: 3px solid #f39c12;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .plateau-alert-info {
+            flex: 1;
+        }
+        .plateau-alert-exercise {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .plateau-alert-detail {
+            color: #999;
+            font-size: 0.8rem;
+        }
+        .plateau-alert-suggestion {
+            color: #f39c12;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .alert-dismiss-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .alert-dismiss-btn:hover {
+            color: #f39c12;
+            background: rgba(243,156,18,0.1);
+        }
+
+        /* PR Hall of Fame */
+        .pr-hall-of-fame {
+            margin-bottom: 25px;
+        }
+        .pr-hall-title {
+            color: #2ecc71;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pr-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(46,204,113,0.06);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(46,204,113,0.12);
+        }
+        .pr-entry-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        .pr-type-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .pr-type-badge.e1rm {
+            background: rgba(46,204,113,0.15);
+            color: #2ecc71;
+        }
+        .pr-type-badge.volume {
+            background: rgba(78,205,196,0.15);
+            color: #4ecdc4;
+        }
+        .pr-type-badge.best-set {
+            background: rgba(243,156,18,0.15);
+            color: #f39c12;
+        }
+        .pr-values {
+            font-size: 0.85rem;
+            color: #888;
+            white-space: nowrap;
+        }
+        .pr-values .new-value {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        .pr-date {
+            font-size: 0.75rem;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        /* Per-Exercise Analytics Cards */
+        .analytics-exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .analytics-exercise-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .analytics-exercise-card.expanded {
+            border-color: rgba(46,204,113,0.3);
+        }
+        .analytics-card-header {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            cursor: pointer;
+            gap: 12px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .analytics-card-header:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .analytics-card-name {
+            flex: 1;
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+        .analytics-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .analytics-card-sessions {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .analytics-card-pr {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(46,204,113,0.15);
+            color: #2ecc71;
+        }
+        .analytics-card-plateau {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(243,156,18,0.15);
+            color: #f39c12;
+        }
+        .analytics-card-chevron {
+            color: #666;
+            font-size: 1rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .analytics-exercise-card.expanded .analytics-card-chevron {
+            transform: rotate(90deg);
+        }
+        .analytics-card-body {
+            display: none;
+            padding: 0 16px 16px;
+        }
+        .analytics-exercise-card.expanded .analytics-card-body {
+            display: block;
+        }
+        .analytics-card-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .analytics-mini-stat {
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .analytics-mini-stat .stat-val {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2ecc71;
+            display: block;
+        }
+        .analytics-mini-stat .stat-lbl {
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .analytics-session-log {
+            margin-top: 12px;
+        }
+        .analytics-session-entry {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .analytics-session-entry:last-child {
+            border-bottom: none;
+        }
+        .analytics-session-date {
+            font-size: 0.8rem;
+            color: #888;
+            width: 60px;
+            flex-shrink: 0;
+        }
+        .analytics-session-sets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            flex: 1;
+        }
+        .analytics-set-pill {
+            display: inline-flex;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            background: rgba(46,204,113,0.1);
+            color: #aaa;
+            border: 1px solid rgba(46,204,113,0.15);
+        }
+        .analytics-session-volume {
+            font-size: 0.8rem;
+            color: #666;
+            white-space: nowrap;
+            width: 70px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        /* Exercise History Panels (on exercise cards) */
+        .view-history-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: rgba(46,204,113,0.1);
+            color: #2ecc71;
+            border: 1px solid rgba(46,204,113,0.25);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        .view-history-btn:hover {
+            background: rgba(46,204,113,0.2);
+            border-color: rgba(46,204,113,0.4);
+        }
+        .view-history-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: #2ecc71;
+        }
+        .exercise-history-panel {
+            background: rgba(46,204,113,0.05);
+            border: 1px solid rgba(46,204,113,0.15);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 14px;
+        }
+        .exercise-history-panel.open {
+            max-height: 500px;
+            padding: 14px;
+        }
+        .panel-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .panel-stat-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+        }
+        .panel-stat-box .stat-label {
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .panel-stat-box .stat-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2ecc71;
+        }
+        .panel-session-entry {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .panel-session-entry:last-child {
+            border-bottom: none;
+        }
+        .panel-date {
+            font-size: 0.75rem;
+            color: #888;
+            width: 50px;
+            flex-shrink: 0;
+        }
+        .panel-sets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            flex: 1;
+        }
+        .set-pill {
+            display: inline-flex;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            background: rgba(46,204,113,0.1);
+            color: #aaa;
+            border: 1px solid rgba(46,204,113,0.15);
+        }
+        .panel-volume {
+            font-size: 0.75rem;
+            color: #666;
+            white-space: nowrap;
+            width: 65px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        /* Suggestion Hint (for export) */
+        .suggestion-hint {
+            font-size: 0.8rem;
+            color: #4ecdc4;
+            font-style: italic;
+            margin-bottom: 8px;
+            padding: 6px 10px;
+            background: rgba(78,205,196,0.08);
+            border-radius: 6px;
+            border-left: 2px solid rgba(78,205,196,0.3);
+        }
+
+        /* PR Celebration Modal */
+        .pr-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .pr-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .pr-modal {
+            background: #16213e;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid rgba(46,204,113,0.4);
+            box-shadow: 0 0 40px rgba(46,204,113,0.15);
+        }
+        .pr-modal h3 {
+            color: #2ecc71;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+        .pr-modal-list {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .pr-modal-entry {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(46,204,113,0.08);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(46,204,113,0.15);
+        }
+        .pr-modal-entry:last-child {
+            margin-bottom: 0;
+        }
+        .pr-modal-exercise {
+            flex: 1;
+        }
+        .pr-modal-exercise-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .pr-modal-exercise-detail {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2px;
+        }
+        .pr-modal-exercise-detail .new-val {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+        .pr-modal-close {
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .pr-modal-close:hover {
+            background: linear-gradient(135deg, #3ddb80, #2ecc71);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46,204,113,0.4);
+        }
+
+        /* Analytics Empty State */
+        .analytics-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        .analytics-empty-state svg {
+            width: 64px;
+            height: 64px;
+            fill: #444;
+            margin-bottom: 15px;
+        }
+        .analytics-empty-state p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* Mobile responsive for routines */
         @media (max-width: 768px) {
             .routines-container {
@@ -1240,6 +1819,28 @@
 
             .history-session-summary {
                 font-size: 0.8rem;
+            }
+
+            /* Analytics responsive (768px) */
+            .analytics-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .analytics-card-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .panel-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .history-view-toggle .toggle-btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .pr-modal {
+                width: 95%;
+                padding: 20px;
+            }
+            .analytics-session-volume {
+                display: none;
             }
         }
 
@@ -1319,6 +1920,24 @@
 
             .program-info ul {
                 grid-template-columns: 1fr;
+            }
+
+            /* Analytics responsive (480px) */
+            .analytics-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+            .analytics-card-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .panel-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .set-pill, .analytics-set-pill {
+                font-size: 0.68rem;
+                padding: 2px 5px;
+            }
+            .analytics-stat-value {
+                font-size: 1.4rem;
             }
         }
 
@@ -4083,11 +4702,23 @@
                 </button>
             </div>
 
+            <div class="history-view-toggle">
+                <button class="toggle-btn active" id="toggle-sessions" onclick="switchHistoryView('sessions')">Sessions</button>
+                <button class="toggle-btn" id="toggle-analytics" onclick="switchHistoryView('analytics')">Analytics</button>
+            </div>
+
             <div class="history-container" id="history-container">
                 <div class="history-empty-state">
                     <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                     <p>No workout history yet.<br>Export a workout from your iPhone, then import the JSON file here.</p>
                 </div>
+            </div>
+
+            <div class="analytics-container" id="analytics-container" style="display:none">
+                <div class="analytics-summary" id="analytics-summary"></div>
+                <div class="plateau-alerts" id="plateau-alerts"></div>
+                <div class="pr-hall-of-fame" id="pr-hall-of-fame"></div>
+                <div class="analytics-exercise-list" id="analytics-exercise-list"></div>
             </div>
         </div>
 
@@ -4115,6 +4746,15 @@
                     </button>
                 </div>
                 <button class="routine-modal-close" onclick="closeRoutineModal()">Cancel</button>
+            </div>
+        </div>
+
+        <!-- PR Celebration Modal -->
+        <div class="pr-modal-overlay" id="pr-modal">
+            <div class="pr-modal">
+                <h3>New Personal Records!</h3>
+                <div class="pr-modal-list" id="pr-modal-list"></div>
+                <button class="pr-modal-close" onclick="closePRModal()">Nice!</button>
             </div>
         </div>
 
@@ -4341,16 +4981,20 @@
 
                 r.exercises.forEach(function(ex) {
                     var p = parseSetsReps(ex.setsReps);
+                    var suggestion = getSuggestion(ex.name);
                     routineHtml += '<div class="exercise" data-exercise-name="' + esc(ex.name) + '" data-exercise-targets="' + esc(ex.targets || '') + '" data-exercise-image="' + esc(ex.imageUrl || '') + '" data-exercise-setsreps="' + esc(ex.setsReps || '') + '"><div class="ex-header">';
                     if (ex.imageUrl) routineHtml += '<img class="ex-img" src="' + esc(ex.imageUrl) + '" alt="">';
                     routineHtml += '<div><div class="ex-name">' + esc(ex.name) + '</div>';
                     if (ex.targets) routineHtml += '<div class="ex-targets">' + esc(ex.targets) + '</div>';
                     routineHtml += '</div></div>';
+                    if (suggestion) {
+                        routineHtml += '<div class="suggestion-hint">' + esc(suggestion.reasoning) + '</div>';
+                    }
                     if (p.repsText) routineHtml += '<div class="rep-hint">Aim for ' + p.repsText + ' reps</div>';
                     for (var s = 0; s < p.sets; s++) {
                         routineHtml += '<div class="set-row">';
                         routineHtml += '<span class="set-label">Set ' + (s + 1) + '</span>';
-                        routineHtml += '<input class="set-input" type="number" inputmode="decimal" placeholder="lbs">';
+                        routineHtml += '<input class="set-input" type="number" inputmode="decimal" placeholder="lbs"' + (suggestion ? ' value="' + suggestion.suggestedWeight + '"' : '') + '>';
                         routineHtml += '<span class="unit-label">lbs</span>';
                         routineHtml += '<input class="set-input" type="number" inputmode="numeric" placeholder="reps">';
                         routineHtml += '<span class="unit-label">reps</span>';
@@ -4388,6 +5032,7 @@
                 + '.ex-img{width:50px;height:50px;border-radius:8px;object-fit:cover;background:#2a2a4a}'
                 + '.ex-name{font-weight:600;color:#e0e0e0;font-size:0.95rem}'
                 + '.ex-targets{color:#888;font-size:0.8rem}'
+                + '.suggestion-hint{font-size:0.8rem;color:#4ecdc4;font-style:italic;margin-bottom:8px;padding:6px 10px;background:rgba(78,205,196,0.08);border-radius:6px;border-left:2px solid rgba(78,205,196,0.3)}'
                 + '.rep-hint{color:#9b59b6;font-size:0.8rem;margin-bottom:8px}'
                 + '.set-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}'
                 + '.set-label{color:#888;font-size:0.85rem;width:40px;flex-shrink:0}'
@@ -4539,9 +5184,20 @@
 
                     workoutHistory.push(data);
                     workoutHistory.sort((a, b) => b.timestamp - a.timestamp);
+                    analyticsCache = null;
                     saveHistory();
                     renderHistory();
-                    showNotification('Workout session imported: ' + (data.dateDisplay || data.date));
+
+                    // Detect new PRs
+                    var newPRs = detectNewPRs(data);
+                    if (newPRs.length > 0) {
+                        showPRModal(newPRs);
+                    } else {
+                        showNotification('Workout session imported: ' + (data.dateDisplay || data.date));
+                    }
+
+                    // Refresh history buttons since new data is available
+                    addHistoryButtons();
                 } catch(err) {
                     showNotification('Error reading file: invalid JSON.', true);
                 }
@@ -4638,6 +5294,795 @@
             });
 
             container.innerHTML = html;
+        }
+
+        // ==========================================
+        // PROGRESSIVE OVERLOAD ANALYTICS ENGINE
+        // ==========================================
+
+        let analyticsCache = null;
+        let prCache = null;
+        const PLATEAU_DISMISSALS_KEY = 'plateau_dismissals';
+
+        function getExerciseSessions(exerciseName) {
+            var sessions = [];
+            var nameLower = exerciseName.toLowerCase().trim();
+            workoutHistory.forEach(function(session) {
+                session.routines.forEach(function(routine) {
+                    routine.exercises.forEach(function(ex) {
+                        if (ex.name && ex.name.toLowerCase().trim() === nameLower) {
+                            sessions.push({
+                                date: session.date,
+                                dateDisplay: session.dateDisplay || session.date,
+                                timestamp: session.timestamp,
+                                sets: ex.sets || [],
+                                setsReps: ex.setsReps || '',
+                                routine: routine.name
+                            });
+                        }
+                    });
+                });
+            });
+            // Sorted newest-first (workoutHistory is already sorted that way)
+            return sessions;
+        }
+
+        function estimate1RM(weight, reps) {
+            if (reps <= 0 || weight <= 0) return 0;
+            if (reps === 1) return weight;
+            return Math.round(weight * (1 + reps / 30));
+        }
+
+        function calculateTrend(values) {
+            var n = values.length;
+            if (n < 2) return 0;
+            var sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+            for (var i = 0; i < n; i++) {
+                sumX += i;
+                sumY += values[i];
+                sumXY += i * values[i];
+                sumX2 += i * i;
+            }
+            var denom = n * sumX2 - sumX * sumX;
+            if (denom === 0) return 0;
+            return (n * sumXY - sumX * sumY) / denom;
+        }
+
+        function detectPlateau(recentSessions) {
+            if (recentSessions.length < 3) return null;
+
+            var last3 = recentSessions.slice(0, 3);
+
+            // Check 1: Same max weight with no rep increase for 3 sessions
+            var maxWeights = last3.map(function(s) {
+                var maxW = 0;
+                s.sets.forEach(function(set) {
+                    if (set.completed && set.weight > maxW) maxW = set.weight;
+                });
+                return maxW;
+            });
+            var maxRepsAtMax = last3.map(function(s, idx) {
+                var maxR = 0;
+                s.sets.forEach(function(set) {
+                    if (set.completed && set.weight === maxWeights[idx] && set.reps > maxR) maxR = set.reps;
+                });
+                return maxR;
+            });
+
+            var sameWeight = maxWeights[0] > 0 && maxWeights[0] === maxWeights[1] && maxWeights[1] === maxWeights[2];
+            var noRepProgress = sameWeight && maxRepsAtMax[0] <= maxRepsAtMax[2];
+
+            // Check 2: Volume flat/declining
+            var volumes = last3.map(function(s) {
+                var vol = 0;
+                s.sets.forEach(function(set) {
+                    if (set.completed) vol += set.weight * set.reps;
+                });
+                return vol;
+            });
+            var volumeDecline = volumes[0] > 0 && volumes[0] <= volumes[2];
+
+            // Check 3: Low completion rate
+            var totalSets = 0, completedSets = 0;
+            last3.forEach(function(s) {
+                s.sets.forEach(function(set) {
+                    totalSets++;
+                    if (set.completed) completedSets++;
+                });
+            });
+            var lowCompletion = totalSets > 0 && (completedSets / totalSets) < 0.8;
+
+            if (sameWeight && noRepProgress) {
+                var suggestions = [];
+                suggestions.push('Try adding 1-2 reps per set before increasing weight');
+                suggestions.push('Consider a deload week at 60% intensity');
+                suggestions.push('Switch to a variation of this exercise temporarily');
+                return { type: 'stall', duration: 3, suggestions: suggestions };
+            }
+
+            if (volumeDecline && !lowCompletion) {
+                return {
+                    type: 'plateau',
+                    duration: 3,
+                    suggestions: [
+                        'Add an extra set to increase total volume',
+                        'Try rest-pause or drop sets on the last set',
+                        'Increase weight by 5% and reduce reps'
+                    ]
+                };
+            }
+
+            if (lowCompletion) {
+                return {
+                    type: 'fatigue',
+                    duration: 3,
+                    suggestions: [
+                        'Consider a deload: reduce volume by 40% for one week',
+                        'Check recovery: sleep, nutrition, and stress',
+                        'Reduce working sets by 1 per exercise'
+                    ]
+                };
+            }
+
+            return null;
+        }
+
+        function isLowerBodyExercise(name) {
+            var lower = name.toLowerCase();
+            var keywords = ['squat', 'deadlift', 'leg', 'lunge', 'calf', 'hamstring', 'quad', 'glute', 'hip thrust', 'rdl', 'romanian', 'hack'];
+            return keywords.some(function(k) { return lower.indexOf(k) !== -1; });
+        }
+
+        function getSuggestion(exerciseName) {
+            var sessions = getExerciseSessions(exerciseName);
+            if (sessions.length === 0) return null;
+
+            var lastSession = sessions[0];
+            var completedSets = lastSession.sets.filter(function(s) { return s.completed && s.weight > 0; });
+            if (completedSets.length === 0) return null;
+
+            var daysSinceLast = Math.floor((Date.now() - lastSession.timestamp) / (1000 * 60 * 60 * 24));
+            var lastWeight = completedSets[0].weight;
+            var increment = isLowerBodyExercise(exerciseName) ? 10 : 5;
+
+            // Parse target rep range from setsReps string
+            var targetMaxReps = 12;
+            var repMatch = lastSession.setsReps.match(/(\d+)\s*-\s*(\d+)\s*rep/i);
+            if (repMatch) {
+                targetMaxReps = parseInt(repMatch[2]);
+            } else {
+                var singleRep = lastSession.setsReps.match(/(\d+)\s*rep/i);
+                if (singleRep) targetMaxReps = parseInt(singleRep[1]);
+            }
+
+            // Check if long layoff
+            if (daysSinceLast > 10) {
+                var reducedWeight = Math.round(lastWeight * 0.9);
+                return {
+                    suggestedWeight: reducedWeight,
+                    suggestedReps: targetMaxReps,
+                    reasoning: daysSinceLast + ' days since last session. Reduced weight 10% to ' + reducedWeight + ' lbs for comeback.'
+                };
+            }
+
+            // Check if all sets hit top of rep range
+            var allAtTop = completedSets.every(function(s) { return s.reps >= targetMaxReps; });
+            var mostAtTop = completedSets.filter(function(s) { return s.reps >= targetMaxReps; }).length >= Math.ceil(completedSets.length * 0.66);
+
+            // Check for declining reps across sets
+            var repsDecline = false;
+            if (completedSets.length >= 3) {
+                repsDecline = completedSets[completedSets.length - 1].reps < completedSets[0].reps - 3;
+            }
+
+            if (allAtTop) {
+                return {
+                    suggestedWeight: lastWeight + increment,
+                    suggestedReps: targetMaxReps - 2 > 0 ? targetMaxReps - 2 : targetMaxReps,
+                    reasoning: 'All sets hit ' + targetMaxReps + ' reps at ' + lastWeight + ' lbs. Increase to ' + (lastWeight + increment) + ' lbs.'
+                };
+            }
+
+            if (mostAtTop) {
+                return {
+                    suggestedWeight: lastWeight,
+                    suggestedReps: targetMaxReps,
+                    reasoning: 'Almost there! Stay at ' + lastWeight + ' lbs and aim for ' + targetMaxReps + ' reps on all sets.'
+                };
+            }
+
+            if (repsDecline) {
+                var deloadWeight = Math.round(lastWeight * 0.9);
+                return {
+                    suggestedWeight: deloadWeight,
+                    suggestedReps: targetMaxReps,
+                    reasoning: 'Reps dropped significantly across sets. Consider deload to ' + deloadWeight + ' lbs.'
+                };
+            }
+
+            // Default: same weight, aim for more reps
+            var avgReps = Math.round(completedSets.reduce(function(sum, s) { return sum + s.reps; }, 0) / completedSets.length);
+            return {
+                suggestedWeight: lastWeight,
+                suggestedReps: Math.min(avgReps + 1, targetMaxReps),
+                reasoning: 'Last: ' + lastWeight + ' lbs x ~' + avgReps + ' reps. Stay at ' + lastWeight + ' lbs, aim for +1 rep per set.'
+            };
+        }
+
+        function getExerciseStats(exerciseName) {
+            var sessions = getExerciseSessions(exerciseName);
+            if (sessions.length === 0) return null;
+
+            var best1RM = { value: 0, date: '', weight: 0, reps: 0 };
+            var bestVolume = { value: 0, date: '' };
+            var bestSet = { weight: 0, reps: 0, date: '' };
+            var totalVolumeAllTime = 0;
+            var totalWeight = 0;
+            var weightCount = 0;
+
+            var recentSessions = [];
+
+            sessions.forEach(function(session) {
+                var sessionVolume = 0;
+                var sessionBest1RM = 0;
+
+                session.sets.forEach(function(set) {
+                    if (set.completed && set.weight > 0) {
+                        var e1rm = estimate1RM(set.weight, set.reps);
+                        var vol = set.weight * set.reps;
+                        sessionVolume += vol;
+                        totalVolumeAllTime += vol;
+                        totalWeight += set.weight;
+                        weightCount++;
+
+                        if (e1rm > sessionBest1RM) sessionBest1RM = e1rm;
+
+                        if (e1rm > best1RM.value) {
+                            best1RM = { value: e1rm, date: session.dateDisplay, weight: set.weight, reps: set.reps };
+                        }
+                        if (set.weight > bestSet.weight || (set.weight === bestSet.weight && set.reps > bestSet.reps)) {
+                            bestSet = { weight: set.weight, reps: set.reps, date: session.dateDisplay };
+                        }
+                    }
+                });
+
+                if (sessionVolume > bestVolume.value) {
+                    bestVolume = { value: sessionVolume, date: session.dateDisplay };
+                }
+
+                recentSessions.push({
+                    date: session.date,
+                    dateDisplay: session.dateDisplay,
+                    timestamp: session.timestamp,
+                    sets: session.sets,
+                    volume: sessionVolume,
+                    best1RM: sessionBest1RM
+                });
+            });
+
+            var recent8 = recentSessions.slice(0, 8);
+            // For trend, use oldest-to-newest order
+            var e1rmValues = recent8.map(function(s) { return s.best1RM; }).reverse().filter(function(v) { return v > 0; });
+            var trend = calculateTrend(e1rmValues);
+            var plateau = detectPlateau(recentSessions);
+
+            return {
+                sessionCount: sessions.length,
+                lastPerformed: sessions[0].date,
+                lastPerformedDisplay: sessions[0].dateDisplay,
+                best1RM: best1RM,
+                bestVolume: bestVolume,
+                bestSet: bestSet,
+                totalVolumeAllTime: totalVolumeAllTime,
+                avgWeight: weightCount > 0 ? Math.round(totalWeight / weightCount) : 0,
+                recentSessions: recent8,
+                trend: trend,
+                plateau: plateau
+            };
+        }
+
+        function getAllExerciseAnalytics() {
+            if (analyticsCache && analyticsCache.historyLength === workoutHistory.length) {
+                return analyticsCache.data;
+            }
+
+            var exerciseMap = {};
+            workoutHistory.forEach(function(session) {
+                session.routines.forEach(function(routine) {
+                    routine.exercises.forEach(function(ex) {
+                        if (ex.name) {
+                            var key = ex.name.toLowerCase().trim();
+                            if (!exerciseMap[key]) exerciseMap[key] = ex.name;
+                        }
+                    });
+                });
+            });
+
+            var results = [];
+            Object.keys(exerciseMap).forEach(function(key) {
+                var stats = getExerciseStats(exerciseMap[key]);
+                if (stats) {
+                    results.push({ name: exerciseMap[key], stats: stats });
+                }
+            });
+
+            results.sort(function(a, b) { return b.stats.sessionCount - a.stats.sessionCount; });
+
+            analyticsCache = { historyLength: workoutHistory.length, data: results };
+            return results;
+        }
+
+        function detectNewPRs(session) {
+            var prs = [];
+            // Build pre-import stats (exclude this session)
+            var tempHistory = workoutHistory.filter(function(s) { return s.timestamp !== session.timestamp; });
+
+            session.routines.forEach(function(routine) {
+                routine.exercises.forEach(function(ex) {
+                    if (!ex.name || !ex.sets) return;
+
+                    // Compute old best stats from tempHistory
+                    var oldBest1RM = 0;
+                    var oldBestVolume = 0;
+                    var oldBestSet = { weight: 0, reps: 0 };
+
+                    tempHistory.forEach(function(s) {
+                        s.routines.forEach(function(r) {
+                            r.exercises.forEach(function(e) {
+                                if (e.name && e.name.toLowerCase().trim() === ex.name.toLowerCase().trim() && e.sets) {
+                                    var vol = 0;
+                                    e.sets.forEach(function(set) {
+                                        if (set.completed && set.weight > 0) {
+                                            var e1rm = estimate1RM(set.weight, set.reps);
+                                            if (e1rm > oldBest1RM) oldBest1RM = e1rm;
+                                            vol += set.weight * set.reps;
+                                            if (set.weight > oldBestSet.weight || (set.weight === oldBestSet.weight && set.reps > oldBestSet.reps)) {
+                                                oldBestSet = { weight: set.weight, reps: set.reps };
+                                            }
+                                        }
+                                    });
+                                    if (vol > oldBestVolume) oldBestVolume = vol;
+                                }
+                            });
+                        });
+                    });
+
+                    // Compute new session stats
+                    var newBest1RM = 0;
+                    var newVolume = 0;
+                    var newBestSet = { weight: 0, reps: 0 };
+
+                    ex.sets.forEach(function(set) {
+                        if (set.completed && set.weight > 0) {
+                            var e1rm = estimate1RM(set.weight, set.reps);
+                            if (e1rm > newBest1RM) newBest1RM = e1rm;
+                            newVolume += set.weight * set.reps;
+                            if (set.weight > newBestSet.weight || (set.weight === newBestSet.weight && set.reps > newBestSet.reps)) {
+                                newBestSet = { weight: set.weight, reps: set.reps };
+                            }
+                        }
+                    });
+
+                    if (newBest1RM > oldBest1RM && oldBest1RM > 0) {
+                        prs.push({
+                            exerciseName: ex.name,
+                            prType: 'e1RM',
+                            oldValue: oldBest1RM,
+                            newValue: newBest1RM
+                        });
+                    }
+                    if (newVolume > oldBestVolume && oldBestVolume > 0) {
+                        prs.push({
+                            exerciseName: ex.name,
+                            prType: 'volume',
+                            oldValue: oldBestVolume,
+                            newValue: newVolume
+                        });
+                    }
+                    if (oldBestSet.weight > 0 && (newBestSet.weight > oldBestSet.weight || (newBestSet.weight === oldBestSet.weight && newBestSet.reps > oldBestSet.reps))) {
+                        prs.push({
+                            exerciseName: ex.name,
+                            prType: 'bestSet',
+                            oldValue: oldBestSet.weight + 'x' + oldBestSet.reps,
+                            newValue: newBestSet.weight + 'x' + newBestSet.reps
+                        });
+                    }
+                });
+            });
+
+            return prs;
+        }
+
+        // ==========================================
+        // ANALYTICS UI & RENDERING
+        // ==========================================
+
+        let currentHistoryView = 'sessions';
+
+        function switchHistoryView(view) {
+            currentHistoryView = view;
+            document.getElementById('toggle-sessions').classList.toggle('active', view === 'sessions');
+            document.getElementById('toggle-analytics').classList.toggle('active', view === 'analytics');
+            document.getElementById('history-container').style.display = view === 'sessions' ? '' : 'none';
+            document.getElementById('analytics-container').style.display = view === 'analytics' ? '' : 'none';
+            if (view === 'analytics') {
+                renderAnalytics();
+            }
+        }
+
+        function renderAnalytics() {
+            if (workoutHistory.length === 0) {
+                document.getElementById('analytics-summary').innerHTML = '';
+                document.getElementById('plateau-alerts').innerHTML = '';
+                document.getElementById('pr-hall-of-fame').innerHTML = '';
+                document.getElementById('analytics-exercise-list').innerHTML = '<div class="analytics-empty-state"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg><p>No analytics data yet.<br>Import workout sessions to see your progress and trends.</p></div>';
+                return;
+            }
+
+            analyticsCache = null; // Force refresh
+            var allAnalytics = getAllExerciseAnalytics();
+
+            renderAnalyticsSummary(allAnalytics);
+            renderPlateauAlerts(allAnalytics);
+            renderPRHallOfFame(allAnalytics);
+            renderExerciseAnalyticsCards(allAnalytics);
+        }
+
+        function renderAnalyticsSummary(allAnalytics) {
+            var totalSessions = workoutHistory.length;
+            var totalExercises = allAnalytics.length;
+
+            // Count recent PRs (last 30 days)
+            var thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+            var recentPRCount = 0;
+            allAnalytics.forEach(function(item) {
+                if (item.stats.best1RM.date) {
+                    var sessions = item.stats.recentSessions;
+                    sessions.forEach(function(s) {
+                        if (s.timestamp >= thirtyDaysAgo && s.best1RM === item.stats.best1RM.value) {
+                            recentPRCount++;
+                        }
+                    });
+                }
+            });
+
+            // Session frequency
+            var freq = '';
+            if (totalSessions >= 2) {
+                var newest = workoutHistory[0].timestamp;
+                var oldest = workoutHistory[workoutHistory.length - 1].timestamp;
+                var weeks = Math.max(1, (newest - oldest) / (7 * 24 * 60 * 60 * 1000));
+                freq = (totalSessions / weeks).toFixed(1);
+            } else {
+                freq = totalSessions.toString();
+            }
+
+            var html = '';
+            html += '<div class="analytics-stat-box"><span class="analytics-stat-value">' + totalSessions + '</span><span class="analytics-stat-label">Sessions</span></div>';
+            html += '<div class="analytics-stat-box"><span class="analytics-stat-value">' + totalExercises + '</span><span class="analytics-stat-label">Exercises</span></div>';
+            html += '<div class="analytics-stat-box"><span class="analytics-stat-value">' + recentPRCount + '</span><span class="analytics-stat-label">Recent PRs</span></div>';
+            html += '<div class="analytics-stat-box"><span class="analytics-stat-value">' + freq + '</span><span class="analytics-stat-label">Sessions/Week</span></div>';
+
+            document.getElementById('analytics-summary').innerHTML = html;
+        }
+
+        function renderPlateauAlerts(allAnalytics) {
+            var dismissals = {};
+            try {
+                var stored = localStorage.getItem(PLATEAU_DISMISSALS_KEY);
+                if (stored) dismissals = JSON.parse(stored);
+            } catch(e) {}
+
+            var alerts = allAnalytics.filter(function(item) {
+                if (!item.stats.plateau) return false;
+                var key = item.name.toLowerCase();
+                if (dismissals[key] && (Date.now() - dismissals[key]) < 7 * 24 * 60 * 60 * 1000) return false;
+                return true;
+            });
+
+            if (alerts.length === 0) {
+                document.getElementById('plateau-alerts').innerHTML = '';
+                return;
+            }
+
+            var html = '<div class="plateau-alerts-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="#f39c12"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> Needs Attention</div>';
+            alerts.forEach(function(item) {
+                var p = item.stats.plateau;
+                html += '<div class="plateau-alert-card">';
+                html += '<div class="plateau-alert-info">';
+                html += '<div class="plateau-alert-exercise">' + escapeHtml(item.name) + '</div>';
+                html += '<div class="plateau-alert-detail">' + escapeHtml(p.type.charAt(0).toUpperCase() + p.type.slice(1)) + ' detected over last ' + p.duration + ' sessions</div>';
+                if (p.suggestions.length > 0) {
+                    html += '<div class="plateau-alert-suggestion">' + escapeHtml(p.suggestions[0]) + '</div>';
+                }
+                html += '</div>';
+                html += '<button class="alert-dismiss-btn" onclick="dismissPlateau(\'' + escapeHtml(item.name.replace(/'/g, "\\'")) + '\')" title="Dismiss"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>';
+                html += '</div>';
+            });
+
+            document.getElementById('plateau-alerts').innerHTML = html;
+        }
+
+        function dismissPlateau(exerciseName) {
+            var dismissals = {};
+            try {
+                var stored = localStorage.getItem(PLATEAU_DISMISSALS_KEY);
+                if (stored) dismissals = JSON.parse(stored);
+            } catch(e) {}
+            dismissals[exerciseName.toLowerCase()] = Date.now();
+            localStorage.setItem(PLATEAU_DISMISSALS_KEY, JSON.stringify(dismissals));
+            // Re-render just plateau section
+            var allAnalytics = getAllExerciseAnalytics();
+            renderPlateauAlerts(allAnalytics);
+            showNotification('Alert dismissed for 7 days');
+        }
+
+        function renderPRHallOfFame(allAnalytics) {
+            var prEntries = [];
+            allAnalytics.forEach(function(item) {
+                var s = item.stats;
+                if (s.best1RM.value > 0 && s.best1RM.date) {
+                    prEntries.push({
+                        name: item.name,
+                        type: 'e1RM',
+                        value: s.best1RM.value + ' lbs',
+                        detail: s.best1RM.weight + ' x ' + s.best1RM.reps,
+                        date: s.best1RM.date
+                    });
+                }
+                if (s.bestVolume.value > 0 && s.bestVolume.date) {
+                    prEntries.push({
+                        name: item.name,
+                        type: 'volume',
+                        value: s.bestVolume.value.toLocaleString() + ' lbs',
+                        detail: 'Session volume',
+                        date: s.bestVolume.date
+                    });
+                }
+            });
+
+            // Sort by most recent date, take last 10
+            prEntries.sort(function(a, b) { return a.date < b.date ? 1 : -1; });
+            prEntries = prEntries.slice(0, 10);
+
+            if (prEntries.length === 0) {
+                document.getElementById('pr-hall-of-fame').innerHTML = '';
+                return;
+            }
+
+            var html = '<div class="pr-hall-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="#2ecc71"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg> Recent PRs</div>';
+            prEntries.forEach(function(pr) {
+                var badgeClass = 'pr-type-badge ';
+                var label = '';
+                if (pr.type === 'e1RM') { badgeClass += 'e1rm'; label = 'Est 1RM'; }
+                else if (pr.type === 'volume') { badgeClass += 'volume'; label = 'Volume'; }
+                else { badgeClass += 'best-set'; label = 'Best Set'; }
+
+                html += '<div class="pr-entry">';
+                html += '<span class="pr-entry-name">' + escapeHtml(pr.name) + '</span>';
+                html += '<span class="' + badgeClass + '">' + label + '</span>';
+                html += '<span class="pr-values"><span class="new-value">' + escapeHtml(pr.value) + '</span></span>';
+                html += '<span class="pr-date">' + escapeHtml(pr.date) + '</span>';
+                html += '</div>';
+            });
+
+            document.getElementById('pr-hall-of-fame').innerHTML = html;
+        }
+
+        function buildSparkline(recentSessions, trend) {
+            if (recentSessions.length < 2) return '';
+            var values = recentSessions.map(function(s) { return s.best1RM; }).reverse();
+            var max = Math.max.apply(null, values);
+            if (max === 0) return '';
+
+            var trendClass = '';
+            if (trend > 1) trendClass = '';
+            else if (trend < -1) trendClass = ' declining';
+            else trendClass = ' flat';
+
+            var html = '<div class="sparkline" title="Estimated 1RM trend">';
+            values.forEach(function(v, i) {
+                var pct = Math.max(8, Math.round((v / max) * 100));
+                var cls = 'spark-bar' + trendClass;
+                if (i === values.length - 1) cls += ' current';
+                html += '<div class="' + cls + '" style="height:' + pct + '%"></div>';
+            });
+            html += '</div>';
+            return html;
+        }
+
+        function renderExerciseAnalyticsCards(allAnalytics) {
+            if (allAnalytics.length === 0) {
+                document.getElementById('analytics-exercise-list').innerHTML = '<div class="analytics-empty-state"><p>No exercise data found in your history.</p></div>';
+                return;
+            }
+
+            var html = '';
+            allAnalytics.forEach(function(item) {
+                var s = item.stats;
+                html += '<div class="analytics-exercise-card" data-exercise="' + escapeHtml(item.name) + '">';
+                html += '<div class="analytics-card-header" onclick="toggleAnalyticsCard(this.parentElement)">';
+                html += '<span class="analytics-card-name">' + escapeHtml(item.name) + '</span>';
+                html += '<div class="analytics-card-meta">';
+                html += '<span class="analytics-card-sessions">' + s.sessionCount + ' session' + (s.sessionCount !== 1 ? 's' : '') + '</span>';
+                if (s.plateau) {
+                    html += '<span class="analytics-card-plateau">' + escapeHtml(s.plateau.type) + '</span>';
+                }
+                html += buildSparkline(s.recentSessions, s.trend);
+                html += '</div>';
+                html += '<span class="analytics-card-chevron">&#9656;</span>';
+                html += '</div>';
+
+                // Expandable body
+                html += '<div class="analytics-card-body">';
+                html += '<div class="analytics-card-stats">';
+                html += '<div class="analytics-mini-stat"><span class="stat-val">' + (s.best1RM.value || '--') + '</span><span class="stat-lbl">Est 1RM</span></div>';
+                html += '<div class="analytics-mini-stat"><span class="stat-val">' + (s.bestVolume.value > 0 ? s.bestVolume.value.toLocaleString() : '--') + '</span><span class="stat-lbl">Vol PR</span></div>';
+                html += '<div class="analytics-mini-stat"><span class="stat-val">' + (s.bestSet.weight > 0 ? s.bestSet.weight + 'x' + s.bestSet.reps : '--') + '</span><span class="stat-lbl">Best Set</span></div>';
+                html += '</div>';
+
+                // Session log
+                if (s.recentSessions.length > 0) {
+                    html += '<div class="analytics-session-log">';
+                    s.recentSessions.forEach(function(sess) {
+                        html += '<div class="analytics-session-entry">';
+                        html += '<span class="analytics-session-date">' + escapeHtml(sess.dateDisplay) + '</span>';
+                        html += '<div class="analytics-session-sets">';
+                        sess.sets.forEach(function(set) {
+                            if (set.completed && set.weight > 0) {
+                                html += '<span class="analytics-set-pill">' + set.weight + 'x' + set.reps + '</span>';
+                            }
+                        });
+                        html += '</div>';
+                        html += '<span class="analytics-session-volume">' + (sess.volume > 0 ? sess.volume.toLocaleString() : '--') + '</span>';
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+
+                html += '</div>'; // analytics-card-body
+                html += '</div>'; // analytics-exercise-card
+            });
+
+            document.getElementById('analytics-exercise-list').innerHTML = html;
+        }
+
+        function toggleAnalyticsCard(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // ==========================================
+        // EXERCISE HISTORY PANELS ON CARDS
+        // ==========================================
+
+        function addHistoryButtons() {
+            var cards = document.querySelectorAll('.exercise-card');
+            cards.forEach(function(card) {
+                if (card.querySelector('.view-history-btn')) return;
+                if (card.closest('#tab-routines')) return;
+                if (card.closest('#tab-history')) return;
+
+                var nameEl = card.querySelector('h3');
+                if (!nameEl) return;
+                var clone = nameEl.cloneNode(true);
+                clone.querySelectorAll('.level-tag').forEach(function(t) { t.remove(); });
+                var name = clone.textContent.trim();
+
+                var sessions = getExerciseSessions(name);
+                if (sessions.length === 0) return;
+
+                var btn = document.createElement('button');
+                btn.className = 'view-history-btn';
+                btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg> History (' + sessions.length + ')';
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleExerciseHistoryPanel(card, name);
+                });
+
+                var addBtn = card.querySelector('.add-to-routine-btn');
+                if (addBtn) {
+                    addBtn.after(btn);
+                } else {
+                    card.appendChild(btn);
+                }
+            });
+        }
+
+        function toggleExerciseHistoryPanel(card, exerciseName) {
+            // Close any other open panels
+            document.querySelectorAll('.exercise-history-panel.open').forEach(function(panel) {
+                if (panel.parentElement !== card) {
+                    panel.classList.remove('open');
+                    setTimeout(function() { panel.remove(); }, 400);
+                }
+            });
+
+            var existing = card.querySelector('.exercise-history-panel');
+            if (existing) {
+                if (existing.classList.contains('open')) {
+                    existing.classList.remove('open');
+                    setTimeout(function() { existing.remove(); }, 400);
+                } else {
+                    existing.classList.add('open');
+                }
+                return;
+            }
+
+            var stats = getExerciseStats(exerciseName);
+            if (!stats) return;
+
+            var panel = document.createElement('div');
+            panel.className = 'exercise-history-panel';
+
+            var html = '<div class="panel-stats">';
+            html += '<div class="panel-stat-box"><span class="stat-label">Last Done</span><span class="stat-value">' + escapeHtml(stats.lastPerformedDisplay) + '</span></div>';
+            html += '<div class="panel-stat-box"><span class="stat-label">Best 1RM</span><span class="stat-value">' + (stats.best1RM.value || '--') + '</span></div>';
+            html += '<div class="panel-stat-box"><span class="stat-label">Vol PR</span><span class="stat-value">' + (stats.bestVolume.value > 0 ? stats.bestVolume.value.toLocaleString() : '--') + '</span></div>';
+            html += '</div>';
+
+            html += buildSparkline(stats.recentSessions, stats.trend);
+
+            var sessionsToShow = stats.recentSessions.slice(0, 5);
+            html += '<div class="panel-sessions">';
+            sessionsToShow.forEach(function(sess) {
+                html += '<div class="panel-session-entry">';
+                html += '<span class="panel-date">' + escapeHtml(sess.dateDisplay) + '</span>';
+                html += '<div class="panel-sets">';
+                sess.sets.forEach(function(set) {
+                    if (set.completed && set.weight > 0) {
+                        html += '<span class="set-pill">' + set.weight + 'x' + set.reps + '</span>';
+                    }
+                });
+                html += '</div>';
+                html += '<span class="panel-volume">' + (sess.volume > 0 ? sess.volume.toLocaleString() : '--') + '</span>';
+                html += '</div>';
+            });
+            html += '</div>';
+
+            panel.innerHTML = html;
+            card.appendChild(panel);
+
+            // Trigger animation
+            requestAnimationFrame(function() {
+                panel.classList.add('open');
+            });
+        }
+
+        // ==========================================
+        // PR CELEBRATION MODAL
+        // ==========================================
+
+        function showPRModal(prs) {
+            var list = document.getElementById('pr-modal-list');
+            var html = '';
+            prs.forEach(function(pr) {
+                var typeLabel = '';
+                if (pr.prType === 'e1RM') typeLabel = 'Estimated 1RM';
+                else if (pr.prType === 'volume') typeLabel = 'Session Volume';
+                else typeLabel = 'Best Set';
+
+                var oldDisplay = typeof pr.oldValue === 'number' ? pr.oldValue.toLocaleString() + ' lbs' : pr.oldValue;
+                var newDisplay = typeof pr.newValue === 'number' ? pr.newValue.toLocaleString() + ' lbs' : pr.newValue;
+
+                var pctGain = '';
+                if (typeof pr.oldValue === 'number' && typeof pr.newValue === 'number' && pr.oldValue > 0) {
+                    var pct = Math.round(((pr.newValue - pr.oldValue) / pr.oldValue) * 100);
+                    if (pct > 0) pctGain = ' (+' + pct + '%)';
+                }
+
+                html += '<div class="pr-modal-entry">';
+                html += '<div class="pr-modal-exercise">';
+                html += '<div class="pr-modal-exercise-name">' + escapeHtml(pr.exerciseName) + '</div>';
+                html += '<div class="pr-modal-exercise-detail">' + escapeHtml(typeLabel) + ': ' + escapeHtml(oldDisplay) + ' &rarr; <span class="new-val">' + escapeHtml(newDisplay) + '</span>' + pctGain + '</div>';
+                html += '</div>';
+                html += '</div>';
+            });
+            list.innerHTML = html;
+            document.getElementById('pr-modal').classList.add('active');
+        }
+
+        function closePRModal() {
+            document.getElementById('pr-modal').classList.remove('active');
         }
 
         // Render a single routine's exercises
@@ -4757,10 +6202,18 @@
         });
 
         // Initialize on page load
+        // Close PR modal when clicking outside
+        document.getElementById('pr-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePRModal();
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             addRoutineButtons();
             loadRoutines();
             loadHistory();
+            addHistoryButtons();
         });
     </script>
 </body>
