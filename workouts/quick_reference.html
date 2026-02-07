@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Reference - 11 Selected Exercises</title>
+    <style>
+        /* === Reset === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* === Base === */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* === Header === */
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #ff6b35, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.2rem;
+        }
+
+        /* === Workout Sections === */
+        .workout-section {
+            margin-bottom: 50px;
+        }
+
+        .workout-section h2 {
+            font-size: 2rem;
+            color: #f7c59f;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,107,53,0.3);
+        }
+
+        /* === Section Dividers === */
+        .section-divider {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        .section-divider h2 {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 0 30px;
+            position: relative;
+            font-size: 1.8rem;
+            color: #ff6b35;
+        }
+
+        /* === Level Tags === */
+        .level-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .level-beginner { background: #27ae60; color: white; }
+        .level-intermediate { background: #f39c12; color: white; }
+        .level-advanced { background: #e74c3c; color: white; }
+        .level-warmup { background: #95a5a6; color: white; }
+
+        /* === Exercise Grid === */
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* === Exercise Cards === */
+        .exercise-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.2);
+        }
+
+        .exercise-card h3 {
+            font-size: 1.2rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exercise-card p {
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .exercise-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* === Exercise Details === */
+        .exercise-details {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .detail-badge {
+            background: rgba(255,107,53,0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #f7c59f;
+        }
+
+        .watch-link {
+            background: rgba(0,0,0,0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #ff6b35;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+        }
+
+        .watch-link:hover {
+            background: rgba(255,107,53,0.3);
+        }
+
+        .yt-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* === Muscles & Form Tips === */
+        .muscles {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .muscles strong {
+            color: #ff6b35;
+        }
+
+        .form-tips {
+            padding: 10px;
+            background: rgba(39, 174, 96, 0.1);
+            border-left: 3px solid #27ae60;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.8rem;
+            color: #a0d8b0;
+        }
+
+        .form-tips strong {
+            color: #27ae60;
+        }
+
+        /* === Footer === */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+
+        /* === Responsive: Tablet === */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            body { padding: 10px; }
+            .exercises-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === Responsive: Phone === */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .exercise-card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>Quick Reference</h1>
+            <p class="subtitle">11 Selected Exercises</p>
+        </header>
+
+        <main>
+
+            <!-- ============================== -->
+            <!-- Triceps Section                -->
+            <!-- ============================== -->
+            <div class="section-divider">
+                <h2>Triceps</h2>
+            </div>
+
+            <section class="workout-section">
+                <div class="exercises-grid">
+
+                    <!-- Dumbbell Kickback -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-kickback.webp" alt="Dumbbell Kickback" class="exercise-image">
+                        <h3>Dumbbell Kickback</h3>
+                        <p>Bent over, upper arm parallel to floor. Extend forearm back until arm is straight. Squeeze at top.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 12-15 each arm</span>
+                            <a href="https://liftmanual.com/exercise/dumbbell-kickback/" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Guide
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Triceps (Lateral Head)</p>
+                    </div>
+
+                    <!-- Close Grip Dumbbell Press -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-close-grip-press.webp" alt="Close Grip Dumbbell Press" class="exercise-image">
+                        <h3>Close Grip Dumbbell Press</h3>
+                        <p>Lie flat, dumbbells together over chest. Press up keeping dumbbells close. Triceps focus with chest involvement.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3-4 sets x 8-12 reps</span>
+                            <a href="https://liftmanual.com/exercise/dumbbell-close-grip-press/" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Guide
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Triceps, Chest</p>
+                    </div>
+
+                    <!-- Dumbbell Lying Extension -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lying-triceps-extension.webp" alt="Dumbbell Lying Extension" class="exercise-image">
+                        <h3>Dumbbell Lying Extension</h3>
+                        <p>Lie on bench with dumbbells, lower to sides of head, extend back up. Allows individual arm work.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 10-12 reps</span>
+                            <a href="https://liftmanual.com/exercise/dumbbell-lying-triceps-extension/" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Guide
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Triceps</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ============================== -->
+            <!-- Kettlebell Section             -->
+            <!-- ============================== -->
+            <div class="section-divider">
+                <h2>Kettlebell</h2>
+            </div>
+
+            <section class="workout-section">
+                <div class="exercises-grid">
+
+                    <!-- Slingshot -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-slingshot.webp" alt="Kettlebell Slingshot" class="exercise-image">
+                        <h3>Slingshot <span class="level-tag level-beginner">Warm-Up</span></h3>
+                        <p>Pass the kettlebell around your body at waist height, switching hands in front and behind. Keep your core tight and hips stable.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">20 reps each direction</span>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Shoulders, Core, Grip</p>
+                    </div>
+
+                    <!-- Good Morning -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-good-morning.webp" alt="Good Morning" class="exercise-image">
+                        <h3>Good Morning <span class="level-tag level-beginner">Warm-Up</span></h3>
+                        <p>Hold KB at chest or behind head. Hinge at hips, pushing butt back while keeping back flat. Feel the stretch in hamstrings.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">10 reps</span>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Glutes, Hamstrings</p>
+                    </div>
+
+                    <!-- Two Handed Swing -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-swing.webp" alt="Kettlebell Swing" class="exercise-image">
+                        <h3>Two Handed Swing</h3>
+                        <p>The foundational KB movement. Hinge at hips, swing KB between legs, then explosively drive hips forward. Arms stay relaxed.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 15-20 reps</span>
+                            <a href="https://www.instagram.com/reel/DLSP_76Au0m/?hl=en" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                Watch
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Glutes, Hamstrings, Lower Back, Core</p>
+                        <div class="form-tips"><strong>Goal:</strong> 10 minutes non-stop</div>
+                    </div>
+
+                    <!-- Goblet Squat -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-goblet-squat.webp" alt="Goblet Squat" class="exercise-image">
+                        <h3>Goblet Squat</h3>
+                        <p>Hold KB by horns at chest. Squat deep with chest up, elbows tracking inside knees. Drive through heels to stand.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 12-15 reps</span>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Quads, Glutes, Core</p>
+                    </div>
+
+                    <!-- Sumo High Pull -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-sumo-high-pull.webp" alt="Kettlebell Sumo High Pull" class="exercise-image">
+                        <h3>Sumo High Pull</h3>
+                        <p>Wide stance with toes out. Grip KB between feet, drive through legs and pull KB to chest height with elbows high. Lower and repeat.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 10-12 reps</span>
+                            <a href="https://liftmanual.com/kettlebell-sumo-high-pull/" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Guide
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Glutes, Hamstrings, Quads, Traps, Shoulders</p>
+                    </div>
+
+                    <!-- Single Arm Row -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-single-arm-bent-over-row.webp" alt="Single Arm Row" class="exercise-image">
+                        <h3>Single Arm Row</h3>
+                        <p>Hinge forward, support on bench or knee. Row KB to hip, driving elbow back. Squeeze shoulder blade at top.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 10-12 each arm</span>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Shoulders, Biceps, Back, Hamstrings</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ============================== -->
+            <!-- Core Section                   -->
+            <!-- ============================== -->
+            <div class="section-divider">
+                <h2>Core</h2>
+            </div>
+
+            <section class="workout-section">
+                <div class="exercises-grid">
+
+                    <!-- Lying Leg Raise -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/lying-leg-raise.webp" alt="Lying Leg Raise" class="exercise-image">
+                        <h3>Lying Leg Raise</h3>
+                        <p>Lie flat, hands under hips for support. Keeping legs straight, raise them to 90 degrees. Lower slowly without touching floor.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">3 sets x 12-15 reps</span>
+                            <a href="https://liftmanual.com/lying-leg-raise/" target="_blank" class="watch-link">
+                                <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                Guide
+                            </a>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Lower Abs, Hip Flexors</p>
+                    </div>
+
+                    <!-- Russian Twist -->
+                    <div class="exercise-card">
+                        <img src="https://liftmanual.com/wp-content/uploads/2023/04/weighted-russian-twist.webp" alt="Russian Twist" class="exercise-image">
+                        <h3>Russian Twist</h3>
+                        <p>V-sit position, feet elevated. Hold KB at chest and rotate torso side to side. Control the movement.</p>
+                        <div class="exercise-details">
+                            <span class="detail-badge">2 sets x 20 total</span>
+                        </div>
+                        <p class="muscles"><strong>Targets:</strong> Obliques, Core</p>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Quick Reference - Workout Planner</p>
+        </footer>
+
+    </div>
+</body>
+</html>
