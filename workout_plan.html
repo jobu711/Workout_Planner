@@ -744,6 +744,81 @@
             transform: scale(1.1);
         }
 
+        /* Drag handle for routine exercise reordering */
+        .drag-handle {
+            cursor: grab;
+            color: rgba(255,255,255,0.3);
+            padding: 4px 2px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: none; /* Prevents scroll on touch drag */
+            transition: color 0.2s;
+            margin-right: 4px;
+        }
+
+        .drag-handle:hover {
+            color: var(--accent-teal, #4ecdc4);
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .drag-handle svg {
+            pointer-events: none; /* Click passes through to handle */
+        }
+
+        /* Dragging state on the item being dragged (desktop) */
+        .routine-exercise-item.dragging {
+            opacity: 0.4;
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px dashed rgba(78, 205, 196, 0.4);
+        }
+
+        /* Drop indicator line shown between items */
+        .routine-exercise-item.drag-over-above {
+            box-shadow: 0 -2px 0 0 #4ecdc4;
+        }
+
+        .routine-exercise-item.drag-over-below {
+            box-shadow: 0 2px 0 0 #4ecdc4;
+        }
+
+        /* Ghost element for touch dragging */
+        .drag-ghost {
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0.85;
+            background: #16213e;
+            border: 2px solid #4ecdc4;
+            border-radius: 10px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            max-width: 320px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .drag-ghost img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        /* Empty list drop target when dragging */
+        .routine-exercises-list.drag-target-active {
+            border: 2px dashed rgba(78, 205, 196, 0.3);
+            background: rgba(78, 205, 196, 0.03);
+            border-radius: 10px;
+        }
+
         .routine-empty-state {
             color: #666;
             text-align: center;
@@ -1997,7 +2072,7 @@
             <div class="exercises-grid">
 
                 <div class="exercise-card shoulder-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/band-pull-apart.gif" alt="Band Pull-Aparts" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/band-pull-apart.webp" alt="Band Pull-Aparts" class="exercise-image">
                     <h3>Band Pull-Aparts</h3>
                     <p>Hold band at chest height, arms extended. Pull band apart by squeezing shoulder blades. Control the return.</p>
                     <div class="exercise-details">
@@ -2031,7 +2106,7 @@
                 </div>
 
                 <div class="exercise-card shoulder-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/forearm-wall-slide.gif" alt="Wall Angels" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/forearm-wall-slide.webp" alt="Wall Angels" class="exercise-image">
                     <h3>Wall Angels</h3>
                     <p>Stand with back flat against wall, arms in goalpost position. Slowly slide arms up overhead while keeping contact with wall, then back down.</p>
                     <div class="exercise-details">
@@ -2122,6 +2197,23 @@
                 </div>
 
                 <div class="exercise-card">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-incline-front-raise.webp" alt="Dumbbell Incline Front Raise" class="exercise-image">
+                    <h3>Dumbbell Incline Front Raise <span class="level-tag level-intermediate">Intermediate</span></h3>
+                    <p>Lie on an incline bench with feet planted firmly. Hold dumbbells with palms facing down, arms extended. Raise the dumbbells forward to shoulder height, pause briefly, then lower with control.</p>
+                    <div class="exercise-details">
+                        <span class="detail-badge">3 sets x 10-12 reps</span>
+                        <a href="https://liftmanual.com/dumbbell-incline-front-raise/" target="_blank" class="watch-link">
+                            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            Guide
+                        </a>
+                    </div>
+                    <p class="muscles"><strong>Targets:</strong> Anterior Deltoid, Upper Chest, Coracobrachialis</p>
+                    <div class="form-tips">
+                        <strong>Key:</strong> The incline position increases range of motion and eliminates momentum. Keep arms slightly bent and raise to shoulder height only. Use lighter weight than standing front raises.
+                    </div>
+                </div>
+
+                <div class="exercise-card">
                     <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-single-arm-thruster-300x300.webp" alt="Kettlebell Single Arm Thruster" class="exercise-image">
                     <h3>Kettlebell Single Arm Thruster</h3>
                     <p>Hold kettlebell at shoulder height, descend into a squat until thighs reach parallel, then drive upward while pressing overhead in one fluid motion.</p>
@@ -2129,6 +2221,49 @@
                         <span class="detail-badge">3 sets x 8-10 reps each side</span>
                     </div>
                     <p class="muscles"><strong>Targets:</strong> Shoulders, Quads, Glutes, Triceps, Core</p>
+                </div>
+
+                <div class="exercise-card">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/battling-ropes.webp" alt="Battling Ropes" class="exercise-image">
+                    <h3>Battling Ropes <span class="level-tag level-beginner">Beginner</span></h3>
+                    <p>Grip rope ends in each hand with feet shoulder-width apart. Create alternating wave patterns by rapidly moving arms up and down while keeping core engaged. Can also perform double waves, slams, or circles.</p>
+                    <div class="exercise-details">
+                        <span class="detail-badge">3-4 sets x 30-60 seconds</span>
+                        <a href="https://liftmanual.com/battling-ropes/" target="_blank" class="watch-link">
+                            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            Guide
+                        </a>
+                    </div>
+                    <p class="muscles"><strong>Targets:</strong> Shoulders, Rear Deltoid, Arms, Back, Core</p>
+                    <div class="form-tips">
+                        <strong>Key:</strong> Keep a slight bend in the knees and hinge slightly at the hips. Generate waves from the shoulders, not the elbows. Rest 30-60 seconds between sets.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- REAR DELT ISOLATION -->
+        <div class="workout-section">
+            <h2>Rear Delt Isolation <span class="level-tag level-intermediate">Isolation</span></h2>
+            <p class="section-intro">Isolate the rear deltoids to improve posture, shoulder balance, and injury prevention.</p>
+            <div class="exercises-grid">
+
+                <div class="exercise-card">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-reverse-fly.webp" alt="Lever Seated Reverse Fly" class="exercise-image">
+                    <h3>Lever Seated Reverse Fly <span class="level-tag level-intermediate">Intermediate</span></h3>
+                    <p>Sit on the machine with chest against the pad and grasp the handles with an overhand grip. Pull handles back while keeping arms slightly bent, squeezing shoulder blades together at peak contraction. Return with control.</p>
+                    <div class="exercise-details">
+                        <span class="detail-badge">3 sets x 12-15 reps</span>
+                        <a href="https://liftmanual.com/lever-seated-reverse-fly/" target="_blank" class="watch-link">
+                            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                            Guide
+                        </a>
+                    </div>
+                    <p class="muscles"><strong>Targets:</strong> Rear Deltoid, Rhomboids, Trapezius, Infraspinatus</p>
+                    <div class="form-tips">
+                        <strong>Key:</strong> Adjust seat so handles align with shoulders. Keep chest firmly against pad throughout. Squeeze shoulder blades together at the top and hold briefly before lowering.
+                    </div>
                 </div>
 
             </div>
@@ -2333,7 +2468,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-sumo-high-pull.jpg" alt="Kettlebell Sumo High Pull" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-sumo-high-pull.webp" alt="Kettlebell Sumo High Pull" class="exercise-image">
                     <h3>Sumo High Pull</h3>
                     <p>Wide stance with toes out. Grip KB between feet, drive through legs and pull KB to chest height with elbows high. Lower and repeat.</p>
                     <div class="exercise-details">
@@ -2408,7 +2543,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-overhead-triceps-extension.jpg" alt="Kettlebell Overhead Triceps Extension" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-overhead-triceps-extension.webp" alt="Kettlebell Overhead Triceps Extension" class="exercise-image">
                     <h3>Overhead Triceps Extension</h3>
                     <p>Hold KB with both hands and press overhead. Bend elbows to lower KB behind head, keeping upper arms close to ears. Extend arms back up.</p>
                     <div class="exercise-details">
@@ -2488,7 +2623,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-renegade-row.gif" alt="Renegade Row" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-renegade-row.webp" alt="Renegade Row" class="exercise-image">
                     <h3>Plank Row (Renegade Row)</h3>
                     <p>High plank with hands on two KBs. Row one KB to hip while stabilizing with the other. Alternate sides.</p>
                     <div class="exercise-details">
@@ -2614,7 +2749,7 @@
             <div class="exercises-grid">
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/4-sit-up.jpg" alt="3/4 Sit-up" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/4-sit-up.webp" alt="3/4 Sit-up" class="exercise-image">
                     <h3>3/4 Sit-up</h3>
                     <p>Similar to regular sit-up but only come up 3/4 of the way, stopping before torso is vertical. Maintains constant tension on abs.</p>
                     <div class="exercise-details">
@@ -2629,7 +2764,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/ab-roller-crunch.gif" alt="Ab Roller" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/ab-roller-crunch.webp" alt="Ab Roller" class="exercise-image">
                     <h3>Ab Roller</h3>
                     <p>Kneel with hands on ab wheel. Roll forward keeping core tight and back flat, extend as far as you can control, roll back.</p>
                     <div class="exercise-details">
@@ -2726,7 +2861,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-crunch.jpg" alt="Cable Standing Crunch" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-crunch.webp" alt="Cable Standing Crunch" class="exercise-image">
                     <h3>Cable Standing Crunch</h3>
                     <p>Stand facing cable with rope attachment overhead. Crunch down bringing elbows to knees while contracting abs.</p>
                     <div class="exercise-details">
@@ -2740,7 +2875,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/captains-chair-straight-leg-raise.jpg" alt="Captain's Chair Straight Leg Raise" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/captains-chair-straight-leg-raise.webp" alt="Captain's Chair Straight Leg Raise" class="exercise-image">
                     <h3>Captain's Chair Straight Leg Raise</h3>
                     <p>Support body on captain's chair with forearms on pads. Keeping legs straight, raise them to 90 degrees. Lower with control.</p>
                     <div class="exercise-details">
@@ -2806,7 +2941,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-overhead-sit-up.jpg" alt="Dumbbell Overhead Sit Up" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-overhead-sit-up.webp" alt="Dumbbell Overhead Sit Up" class="exercise-image">
                     <h3>Dumbbell Overhead Sit Up</h3>
                     <p>Lie on back holding dumbbell overhead with arms extended. Perform sit-up while keeping dumbbell overhead throughout movement.</p>
                     <div class="exercise-details">
@@ -2860,7 +2995,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/jackknife.jpg" alt="Jackknife" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/jackknife.webp" alt="Jackknife" class="exercise-image">
                     <h3>Jackknife</h3>
                     <p>Lie flat with arms overhead. Simultaneously lift legs and torso, reaching hands to feet. Lower back down with control.</p>
                     <div class="exercise-details">
@@ -3182,7 +3317,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-renegade-row.gif" alt="Renegade Row" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-renegade-row.webp" alt="Renegade Row" class="exercise-image">
                     <h3>Renegade Row</h3>
                     <p>Start in push-up position with hands on dumbbells. Row one dumbbell while stabilizing with the other arm. Alternate sides.</p>
                     <div class="exercise-details">
@@ -3204,7 +3339,7 @@
             <div class="exercises-grid">
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-wide-grip-lat-pulldown.gif" alt="Lat Pulldown" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-wide-grip-lat-pulldown.webp" alt="Lat Pulldown" class="exercise-image">
                     <h3>Lat Pulldown</h3>
                     <p>Grip bar wider than shoulders, sit with thighs under pad. Pull bar to upper chest, squeezing lats. Control the return.</p>
                     <div class="exercise-details">
@@ -3526,7 +3661,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-overhead-curl.gif" alt="Cable Overhead Curl" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-overhead-curl.webp" alt="Cable Overhead Curl" class="exercise-image">
                     <h3>Cable Overhead Curl</h3>
                     <p>High cable curl with arms extended to sides. Mimics front double bicep pose for peak contraction.</p>
                     <div class="exercise-details">
@@ -3784,7 +3919,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-incline-chest-press.gif" alt="Incline Machine Press" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-incline-chest-press.webp" alt="Incline Machine Press" class="exercise-image">
                     <h3>Incline Machine Press</h3>
                     <p>Incline chest press machine targeting upper chest. Fixed path allows focus on muscle contraction.</p>
                     <div class="exercise-details">
@@ -3905,7 +4040,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-tricep-pushdown.gif" alt="One Arm Pushdown" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-tricep-pushdown.webp" alt="One Arm Pushdown" class="exercise-image">
                     <h3>One Arm Cable Pushdown</h3>
                     <p>Single arm pushdown for unilateral triceps work. Keep elbow pinned to side throughout movement.</p>
                     <div class="exercise-details">
@@ -3955,7 +4090,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-seated-triceps-extension.gif" alt="Seated Overhead Extension" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-seated-triceps-extension.webp" alt="Seated Overhead Extension" class="exercise-image">
                     <h3>Seated Dumbbell Extension</h3>
                     <p>Seated, hold dumbbell overhead with both hands. Lower behind head, then extend. Keep elbows pointed up.</p>
                     <div class="exercise-details">
@@ -4144,7 +4279,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-single-leg-deadlift.jpg" alt="Single Leg Dumbbell Deadlift" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-single-leg-deadlift.webp" alt="Single Leg Dumbbell Deadlift" class="exercise-image">
                     <h3>Single Leg Dumbbell Deadlift</h3>
                     <p>Stand on one leg holding dumbbell(s). Hinge at hip, extending free leg back for balance. Lower weight while keeping back straight. Great for balance and unilateral strength.</p>
                     <div class="exercise-details">
@@ -4154,7 +4289,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-glute-bridge.jpg" alt="Glute Bridge" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-glute-bridge.webp" alt="Glute Bridge" class="exercise-image">
                     <h3>Glute Bridge</h3>
                     <p>Lie on back, feet flat on floor near glutes. Drive through heels to lift hips up, squeezing glutes at top. Lower with control. Add weight on hips for progression.</p>
                     <div class="exercise-details">
@@ -4164,7 +4299,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/single-leg-bridge.jpg" alt="Single Leg Glute Bridge" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/single-leg-bridge.webp" alt="Single Leg Glute Bridge" class="exercise-image">
                     <h3>Single Leg Glute Bridge</h3>
                     <p>Same as glute bridge but with one leg extended. More challenging variation that increases hamstring and glute activation on the working leg.</p>
                     <div class="exercise-details">
@@ -4174,7 +4309,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/exercise-ball-leg-curl.jpg" alt="Stability Ball Leg Curl" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/exercise-ball-leg-curl.webp" alt="Stability Ball Leg Curl" class="exercise-image">
                     <h3>Stability Ball Leg Curl</h3>
                     <p>Lie on back with heels on stability ball. Lift hips up, then curl ball toward glutes by bending knees. Extend legs back out while keeping hips elevated.</p>
                     <div class="exercise-details">
@@ -4213,7 +4348,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-stiff-leg-deadlift.jpg" alt="Dumbbell Stiff Leg Deadlift" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-stiff-leg-deadlift.webp" alt="Dumbbell Stiff Leg Deadlift" class="exercise-image">
                     <h3>Dumbbell Stiff Leg Deadlift</h3>
                     <p>Similar to RDL but with straighter legs. Stand with dumbbells, keep knees nearly locked. Hinge at hips, lowering weights along legs. Great hamstring stretch and strength builder.</p>
                     <div class="exercise-details">
@@ -4223,7 +4358,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-deadlift.jpg" alt="Cable Deadlift" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/cable-deadlift.webp" alt="Cable Deadlift" class="exercise-image">
                     <h3>Cable Deadlift</h3>
                     <p>Stand facing away from cable machine at lowest setting. Grip cable with both hands, palms inward. Hinge at hips, lowering torso while keeping back straight and core engaged. Drive through glutes to return.</p>
                     <div class="exercise-details">
@@ -4236,7 +4371,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-lying-leg-curl.jpg" alt="Lever Lying Leg Curl" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-lying-leg-curl.webp" alt="Lever Lying Leg Curl" class="exercise-image">
                     <h3>Lever Lying Leg Curl</h3>
                     <p>Lie face down with knees just off bench end. Place legs under padded lever above ankles. Keep hips flat, curl legs up toward glutes as far as possible. Hold briefly, then lower with control.</p>
                     <div class="exercise-details">
@@ -4270,7 +4405,7 @@
             <div class="exercises-grid">
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/air-squat.jpg" alt="Bodyweight Squat" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/air-squat.webp" alt="Bodyweight Squat" class="exercise-image">
                     <h3>Bodyweight Squat</h3>
                     <p>Stand with feet shoulder-width apart. Lower by bending knees and hips, keeping chest up. Descend until thighs are parallel or below, then drive through heels to stand.</p>
                     <div class="exercise-details">
@@ -4290,7 +4425,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-split-squat.jpg" alt="Dumbbell Split Squat" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-split-squat.webp" alt="Dumbbell Split Squat" class="exercise-image">
                     <h3>Dumbbell Split Squat</h3>
                     <p>Hold dumbbells, stand in split stance. Lower back knee toward floor while keeping torso upright. Press through front foot to return. Don't alternate - complete all reps on one side first.</p>
                     <div class="exercise-details">
@@ -4300,7 +4435,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-bulgarian-split-squat.jpg" alt="Bulgarian Split Squat" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-bulgarian-split-squat.webp" alt="Bulgarian Split Squat" class="exercise-image">
                     <h3>Bulgarian Split Squat</h3>
                     <p>Hold dumbbells, place rear foot elevated on bench or chair. Lower into single leg squat position. Excellent quad and glute builder with bonus balance training.</p>
                     <div class="exercise-details">
@@ -4320,7 +4455,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-leg-extension.jpg" alt="Lever Leg Extension" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-leg-extension.webp" alt="Lever Leg Extension" class="exercise-image">
                     <h3>Lever Leg Extension</h3>
                     <p>Sit with back against pad, feet under lever arm. Grasp side handles for stability. Extend legs until fully straight, hold briefly, then lower with control. Isolates the quadriceps.</p>
                     <div class="exercise-details">
@@ -4333,7 +4468,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-leg-press.jpg" alt="Lever Seated Leg Press" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-leg-press.webp" alt="Lever Seated Leg Press" class="exercise-image">
                     <h3>Lever Seated Leg Press</h3>
                     <p>Adjust seat so feet rest flat with knees at 90 degrees. Place feet shoulder-width on footplate. Grip handles, push platform away by extending legs fully, then lower with control.</p>
                     <div class="exercise-details">
@@ -4346,7 +4481,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/sled-hack-squat.jpg" alt="Sled Hack Squat" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/sled-hack-squat.webp" alt="Sled Hack Squat" class="exercise-image">
                     <h3>Sled Hack Squat</h3>
                     <p>Stand on platform with feet shoulder-width, toes forward. Grasp handles, keep back straight and chest up. Lower by bending knees until thighs are parallel, then drive through heels to return.</p>
                     <div class="exercise-details">
@@ -4377,7 +4512,7 @@
                 </div>
 
                 <div class="exercise-card">
-                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-single-leg-calf-raise.jpg" alt="Single Leg Calf Raise" class="exercise-image">
+                    <img src="https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-single-leg-calf-raise.webp" alt="Single Leg Calf Raise" class="exercise-image">
                     <h3>Single Leg Calf Raise</h3>
                     <p>Same as regular calf raise but on one leg. Hold dumbbell in one hand, other hand on wall for balance. More challenging and ensures balanced development.</p>
                     <div class="exercise-details">
@@ -6108,11 +6243,26 @@
                 return;
             }
 
-            // Render each exercise
-            exercises.forEach(exercise => {
+            // Render each exercise with drag handle for reordering
+            exercises.forEach((exercise, index) => {
                 const item = document.createElement('div');
                 item.className = 'routine-exercise-item';
+                item.dataset.exerciseId = exercise.id;
+                item.dataset.routineId = routineId;
+                item.dataset.index = index;
                 item.innerHTML = `
+                    <span class="drag-handle" title="Drag to reorder" aria-label="Drag to reorder exercise">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <circle cx="9" cy="5" r="1.5"/>
+                            <circle cx="15" cy="5" r="1.5"/>
+                            <circle cx="9" cy="10" r="1.5"/>
+                            <circle cx="15" cy="10" r="1.5"/>
+                            <circle cx="9" cy="15" r="1.5"/>
+                            <circle cx="15" cy="15" r="1.5"/>
+                            <circle cx="9" cy="20" r="1.5"/>
+                            <circle cx="15" cy="20" r="1.5"/>
+                        </svg>
+                    </span>
                     ${exercise.imageUrl ? `<img src="${exercise.imageUrl}" alt="${exercise.name}" class="routine-exercise-image">` : ''}
                     <div class="routine-exercise-info">
                         <div class="exercise-name">${exercise.name}</div>
@@ -6127,6 +6277,257 @@
                 `;
                 container.appendChild(item);
             });
+
+            // Attach drag-and-drop listeners for this routine's exercise list
+            initDragAndDrop(container, routineId);
+        }
+
+        // ===== Drag-and-Drop Reordering for Routine Exercises =====
+
+        // Shared drag state
+        const dragState = {
+            draggedItem: null,       // The DOM element being dragged
+            draggedRoutineId: null,  // Which routine it belongs to
+            draggedIndex: null,      // Original index in the routines array
+            ghost: null,             // Touch drag ghost element
+            currentDropTarget: null  // Current item being hovered over
+        };
+
+        // Reorder the routine array and persist
+        function reorderRoutine(routineId, fromIndex, toIndex) {
+            if (fromIndex === toIndex) return;
+            const exercises = routines[routineId];
+            const [moved] = exercises.splice(fromIndex, 1);
+            exercises.splice(toIndex, 0, moved);
+            saveRoutines();
+            renderRoutine(routineId);
+            showNotification('Exercise order updated');
+        }
+
+        // Clear all drag-over visual indicators
+        function clearDropIndicators(container) {
+            container.querySelectorAll('.routine-exercise-item').forEach(item => {
+                item.classList.remove('drag-over-above', 'drag-over-below');
+            });
+        }
+
+        // Determine if the cursor/touch is in the top or bottom half of an element
+        function getDropPosition(element, clientY) {
+            const rect = element.getBoundingClientRect();
+            const midpoint = rect.top + rect.height / 2;
+            return clientY < midpoint ? 'above' : 'below';
+        }
+
+        // Get the target drop index based on position relative to a sibling item
+        function getDropIndex(targetItem, position) {
+            const targetIndex = parseInt(targetItem.dataset.index, 10);
+            return position === 'above' ? targetIndex : targetIndex + 1;
+        }
+
+        // Initialize drag-and-drop on a routine exercise list container
+        function initDragAndDrop(container, routineId) {
+            const items = container.querySelectorAll('.routine-exercise-item');
+            if (items.length < 2) return; // No reordering needed for 0 or 1 items
+
+            // --- HTML5 Drag API (Desktop) ---
+
+            items.forEach(item => {
+                // Enable draggable only when the handle is held down
+                const handleEl = item.querySelector('.drag-handle');
+                if (handleEl) {
+                    handleEl.addEventListener('mousedown', function() {
+                        item.draggable = true;
+                    });
+                    // Disable draggable once mouse is released (or drag ends)
+                    item.addEventListener('mouseup', function() {
+                        item.draggable = false;
+                    });
+                }
+
+                item.addEventListener('dragstart', function(e) {
+                    if (!item.draggable) {
+                        e.preventDefault();
+                        return;
+                    }
+                    dragState.draggedItem = item;
+                    dragState.draggedRoutineId = routineId;
+                    dragState.draggedIndex = parseInt(item.dataset.index, 10);
+
+                    // Set drag image (optional: use native)
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', item.dataset.exerciseId);
+
+                    // Delay adding the dragging class so the drag image captures correctly
+                    requestAnimationFrame(() => {
+                        item.classList.add('dragging');
+                    });
+                });
+
+                item.addEventListener('dragend', function() {
+                    item.draggable = false;
+                    item.classList.remove('dragging');
+                    clearDropIndicators(container);
+                    dragState.draggedItem = null;
+                    dragState.draggedRoutineId = null;
+                    dragState.draggedIndex = null;
+                });
+
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    if (!dragState.draggedItem || dragState.draggedRoutineId !== routineId) return;
+                    if (item === dragState.draggedItem) return;
+
+                    e.dataTransfer.dropEffect = 'move';
+                    clearDropIndicators(container);
+
+                    const position = getDropPosition(item, e.clientY);
+                    item.classList.add(position === 'above' ? 'drag-over-above' : 'drag-over-below');
+                });
+
+                item.addEventListener('dragleave', function() {
+                    item.classList.remove('drag-over-above', 'drag-over-below');
+                });
+
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    if (!dragState.draggedItem || dragState.draggedRoutineId !== routineId) return;
+
+                    const fromIndex = dragState.draggedIndex;
+                    const position = getDropPosition(item, e.clientY);
+                    let toIndex = getDropIndex(item, position);
+
+                    // Adjust index since removing the item shifts indices
+                    if (fromIndex < toIndex) toIndex--;
+
+                    clearDropIndicators(container);
+                    reorderRoutine(routineId, fromIndex, toIndex);
+                });
+            });
+
+            // --- Touch Events (Mobile) ---
+
+            items.forEach(item => {
+                const handle = item.querySelector('.drag-handle');
+                if (!handle) return;
+
+                let touchStartY = 0;
+                let touchStartX = 0;
+                let isDragging = false;
+                let scrollLocked = false;
+
+                handle.addEventListener('touchstart', function(e) {
+                    const touch = e.touches[0];
+                    touchStartY = touch.clientY;
+                    touchStartX = touch.clientX;
+                    isDragging = false;
+
+                    dragState.draggedItem = item;
+                    dragState.draggedRoutineId = routineId;
+                    dragState.draggedIndex = parseInt(item.dataset.index, 10);
+                }, { passive: true });
+
+                handle.addEventListener('touchmove', function(e) {
+                    if (!dragState.draggedItem) return;
+                    const touch = e.touches[0];
+                    const deltaY = Math.abs(touch.clientY - touchStartY);
+                    const deltaX = Math.abs(touch.clientX - touchStartX);
+
+                    // Require a small vertical movement threshold to distinguish from taps
+                    if (!isDragging && deltaY < 8 && deltaX < 8) return;
+
+                    // If horizontal movement dominates, do not start drag (allow scroll)
+                    if (!isDragging && deltaX > deltaY) {
+                        dragState.draggedItem = null;
+                        return;
+                    }
+
+                    isDragging = true;
+                    e.preventDefault(); // Prevent page scroll while dragging
+
+                    if (!scrollLocked) {
+                        scrollLocked = true;
+                        item.classList.add('dragging');
+                        container.classList.add('drag-target-active');
+                    }
+
+                    // Create or update ghost element
+                    if (!dragState.ghost) {
+                        dragState.ghost = document.createElement('div');
+                        dragState.ghost.className = 'drag-ghost';
+                        const img = item.querySelector('.routine-exercise-image');
+                        const name = item.querySelector('.exercise-name');
+                        dragState.ghost.innerHTML = `
+                            ${img ? `<img src="${img.src}" alt="">` : ''}
+                            <span>${name ? name.textContent : 'Exercise'}</span>
+                        `;
+                        document.body.appendChild(dragState.ghost);
+                    }
+
+                    // Position ghost near finger
+                    dragState.ghost.style.left = (touch.clientX - 30) + 'px';
+                    dragState.ghost.style.top = (touch.clientY - 30) + 'px';
+
+                    // Find which item we're hovering over
+                    clearDropIndicators(container);
+                    const allItems = container.querySelectorAll('.routine-exercise-item');
+                    let hoveredItem = null;
+
+                    allItems.forEach(sibling => {
+                        if (sibling === item) return;
+                        const rect = sibling.getBoundingClientRect();
+                        if (touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                            hoveredItem = sibling;
+                        }
+                    });
+
+                    if (hoveredItem) {
+                        const position = getDropPosition(hoveredItem, touch.clientY);
+                        hoveredItem.classList.add(position === 'above' ? 'drag-over-above' : 'drag-over-below');
+                        dragState.currentDropTarget = { item: hoveredItem, position: position };
+                    } else {
+                        dragState.currentDropTarget = null;
+                    }
+                }, { passive: false });
+
+                handle.addEventListener('touchend', function() {
+                    if (isDragging && dragState.currentDropTarget && dragState.draggedRoutineId === routineId) {
+                        const fromIndex = dragState.draggedIndex;
+                        let toIndex = getDropIndex(
+                            dragState.currentDropTarget.item,
+                            dragState.currentDropTarget.position
+                        );
+
+                        if (fromIndex < toIndex) toIndex--;
+
+                        // Clean up before reorder (reorder triggers re-render)
+                        cleanupTouchDrag(container, item);
+                        reorderRoutine(routineId, fromIndex, toIndex);
+                    } else {
+                        cleanupTouchDrag(container, item);
+                    }
+                }, { passive: true });
+
+                handle.addEventListener('touchcancel', function() {
+                    cleanupTouchDrag(container, item);
+                }, { passive: true });
+            });
+        }
+
+        // Clean up all touch drag state and DOM artifacts
+        function cleanupTouchDrag(container, item) {
+            if (dragState.ghost) {
+                dragState.ghost.remove();
+                dragState.ghost = null;
+            }
+            if (item) item.classList.remove('dragging');
+            if (container) {
+                container.classList.remove('drag-target-active');
+                clearDropIndicators(container);
+            }
+            dragState.draggedItem = null;
+            dragState.draggedRoutineId = null;
+            dragState.draggedIndex = null;
+            dragState.currentDropTarget = null;
         }
 
         // Render all routines
