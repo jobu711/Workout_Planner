@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "appId": "workout-planner-session",
+  "date": "2026-02-02",
+  "dateDisplay": "Feb 2, 2026",
+  "timestamp": 1770059555228,
+  "routines": [
+    {
+      "id": "shoulders",
+      "name": "Shoulders",
+      "subtitle": "All Deltoid Heads, Rotator Cuff",
+      "exercises": [
+        {
+          "name": "Dumbbell Seated Shoulder Press",
+          "targets": "Front Deltoid, Triceps, Trapezius",
+          "imageUrl": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-seated-shoulder-press.webp",
+          "setsReps": "3 sets x 8-12 reps",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 30,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 50,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 50,
+              "completed": true
+            }
+          ]
+        },
+        {
+          "name": "Dumbbell Lateral Raise",
+          "targets": "Side Deltoid, Trapezius, Supraspinatus",
+          "imageUrl": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lateral-raise.webp",
+          "setsReps": "3 sets x 12-15 reps",
+          "sets": [
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            }
+          ]
+        },
+        {
+          "name": "Dumbbell Front Raise",
+          "targets": "Anterior Deltoid, Lateral Deltoid, Supraspinatus",
+          "imageUrl": "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-front-raise.webp",
+          "setsReps": "3 sets x 12-15 reps",
+          "sets": [
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 15,
+              "reps": 20,
+              "completed": true
+            }
+          ]
+        },
+        {
+          "name": "Kettlebell Single Arm Thruster",
+          "targets": "Shoulders, Quads, Glutes, Triceps, Core",
+          "imageUrl": "https://liftmanual.com/wp-content/uploads/2023/04/kettlebell-single-arm-thruster-300x300.webp",
+          "setsReps": "3 sets x 8-10 reps each side",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

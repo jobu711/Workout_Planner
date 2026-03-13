@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "appId": "workout-planner-session",
+  "date": "2026-02-04",
+  "dateDisplay": "Feb 4, 2026",
+  "timestamp": 1770229201334,
+  "routines": [
+    {
+      "id": "legs-core",
+      "name": "Legs & Core",
+      "subtitle": "Quads, Hamstrings, Glutes, Abs",
+      "exercises": [
+        {
+          "name": "Kneeling Around the Body",
+          "targets": "Core, Obliques, Anti-Rotation",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10 each direction",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "name": "Rotational Swing",
+          "targets": "Core, Obliques, Glutes, Hamstrings",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10-12 each side",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 40,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 40,
+              "completed": true
+            }
+          ]
+        },
+        {
+          "name": "Rotational Shoulder Toss",
+          "targets": "Core, Obliques, Shoulders, Rotational Power",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-10 each side",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 15,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 20,
+              "completed": true
+            }
+          ]
+        },
+        {
+          "name": "Side to Side Leg Raises",
+          "targets": "Obliques, Lower Abs, Hip Flexors",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-10 each side",
+          "sets": [
+            {
+              "weight": 30,
+              "reps": 30,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 30,
+              "completed": true
+            },
+            {
+              "weight": 30,
+              "reps": 30,
+              "completed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

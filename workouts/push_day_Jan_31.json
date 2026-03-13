@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "appId": "workout-planner-session",
+  "date": "2026-01-31",
+  "dateDisplay": "Jan 31, 2026",
+  "timestamp": 1769903400000,
+  "routines": [
+    {
+      "id": "push",
+      "name": "Push Day",
+      "subtitle": "Chest, Shoulders, Triceps",
+      "exercises": [
+        {
+          "name": "EZ Bar Skull Crusher",
+          "targets": "Triceps, Forearms",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10-12 reps",
+          "sets": [
+            { "weight": 50, "reps": 12, "completed": true },
+            { "weight": 50, "reps": 12, "completed": true },
+            { "weight": 50, "reps": 12, "completed": true }
+          ]
+        },
+        {
+          "name": "Cable Overhead Extension",
+          "targets": "Triceps Long Head",
+          "imageUrl": "",
+          "setsReps": "3 sets x 12-15 reps",
+          "sets": [
+            { "weight": 40, "reps": 15, "completed": true },
+            { "weight": 50, "reps": 12, "completed": true },
+            { "weight": 50, "reps": 12, "completed": true }
+          ]
+        },
+        {
+          "name": "Cable Pushdown",
+          "targets": "Triceps",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10-12 reps",
+          "sets": [
+            { "weight": 60, "reps": 12, "completed": true },
+            { "weight": 60, "reps": 12, "completed": true },
+            { "weight": 60, "reps": 12, "completed": true }
+          ]
+        },
+        {
+          "name": "Chest Dip",
+          "targets": "Chest, Triceps, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10-12 reps",
+          "sets": [
+            { "weight": 205, "reps": 12, "completed": true },
+            { "weight": 205, "reps": 12, "completed": true },
+            { "weight": 205, "reps": 12, "completed": true }
+          ]
+        },
+        {
+          "name": "Machine Chest Press",
+          "targets": "Chest, Triceps, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-10 reps",
+          "sets": [
+            { "weight": 160, "reps": 10, "completed": true },
+            { "weight": 160, "reps": 9, "completed": true },
+            { "weight": 160, "reps": 8, "completed": true }
+          ]
+        },
+        {
+          "name": "Low Cable Fly",
+          "targets": "Upper Chest, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 10-12 reps",
+          "sets": [
+            { "weight": 50, "reps": 12, "completed": true },
+            { "weight": 60, "reps": 12, "completed": true },
+            { "weight": 60, "reps": 12, "completed": true }
+          ]
+        },
+        {
+          "name": "Pec Deck Fly",
+          "targets": "Chest, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-12 reps",
+          "sets": [
+            { "weight": 160, "reps": 12, "completed": true },
+            { "weight": 175, "reps": 10, "completed": true },
+            { "weight": 190, "reps": 8, "completed": true }
+          ]
+        },
+        {
+          "name": "Cable Crossover",
+          "targets": "Chest, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-10 reps",
+          "sets": [
+            { "weight": 80, "reps": 8, "completed": true },
+            { "weight": 70, "reps": 10, "completed": true },
+            { "weight": 70, "reps": 10, "completed": true }
+          ]
+        },
+        {
+          "name": "Incline Barbell Press",
+          "targets": "Upper Chest, Triceps, Front Delts",
+          "imageUrl": "",
+          "setsReps": "3 sets x 8-10 reps",
+          "sets": [
+            { "weight": 135, "reps": 10, "completed": true },
+            { "weight": 135, "reps": 10, "completed": true },
+            { "weight": 135, "reps": 8, "completed": true }
+          ]
+        }
+      ]
+    }
+  ]
+}
